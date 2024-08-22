@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+
+        android:id="@+id/nav_home"
+        android:name="com.example.studentportal.fragment_dashboard"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard"/>
+
+<!---->
+
+    <fragment
+
+        android:id="@+id/nav_Grades"
+        android:name="com.example.studentportal.fragment_Grades"
+        android:label="Grades"
+        tools:layout="@layout/fragment__grades"/>
+
+
+    <action
+        android:id="@+id/action_dashboard_to_grades"
+        app:destination="@id/nav_Grades" />
+
+
+    <action
+        android:id="@+id/action_grades_to_dashboard"
+        app:destination="@id/nav_home" />
+
+<!---->
+
+    <fragment
+
+        android:id="@+id/nav_Calendar"
+        android:name="com.example.studentportal.fragment_campus_calendar"
+        android:label="Calendar"
+        tools:layout="@layout/fragment_campus_calendar"/>
+
+    <action
+        android:id="@+id/action_dashboard_to_calendar"
+        app:destination="@+id/nav_Calendar" />
+
+
+    <action
+        android:id="@+id/action_calendar_to_dashboard"
+        app:destination="@id/nav_home" />
+
+<!---->
+
+    <fragment
+
+        android:id="@+id/nav_Schedule"
+        android:name="com.example.studentportal.fragment_schedule"
+        android:label="Schedule"
+        tools:layout="@layout/fragment_schedule"/>
+
+
+    <action
+        android:id="@+id/action_dashboard_to_schedule"
+        app:destination="@+id/nav_Schedule" />
+
+
+    <action
+        android:id="@+id/action_schedule_to_dashboard"
+        app:destination="@id/nav_home" />
+
+
+    <!---->
+    <fragment
+
+        android:id="@+id/nav_Subject"
+        android:name="com.example.studentportal.fragment_subjects"
+        android:label="Subjects"
+        tools:layout="@layout/fragment_subjects"/>
+
+
+    <action
+        android:id="@+id/action_dashboard_to_Subject"
+        app:destination="@+id/nav_Subject" />
+
+
+    <action
+        android:id="@+id/action_subject_to_dashboard"
+        app:destination="@+id/nav_home" />
+
+
+
 
 </navigation>
