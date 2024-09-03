@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/studentnumber"
+        android:id="@+id/studentnumber_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Student Number"
@@ -20,21 +20,47 @@
 
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/firstname_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:hint="Full name"
+        android:hint="First name"
         android:paddingHorizontal="10dp"
         android:paddingVertical="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentnumber"
+        app:layout_constraintTop_toBottomOf="@+id/studentnumber_et"
+        app:layout_constraintWidth_percent=".8" />
+
+    <EditText
+        android:id="@+id/middlename_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="Middle name"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstname_et"
+        app:layout_constraintWidth_percent=".8" />
+
+    <EditText
+        android:id="@+id/lastname_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="Last name"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/middlename_et"
         app:layout_constraintWidth_percent=".8" />
 
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/email_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Email"
@@ -43,12 +69,12 @@
         android:paddingVertical="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/lastname_et"
         app:layout_constraintWidth_percent=".8" />
 
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/password_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Password"
@@ -57,7 +83,7 @@
         android:paddingVertical="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/email_et"
         app:layout_constraintWidth_percent=".8" />
 
 
@@ -74,7 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4"
+        app:layout_constraintTop_toBottomOf="@+id/password_et"
         app:layout_constraintWidth_percent=".8" />
 
 
