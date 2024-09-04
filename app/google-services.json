@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "172993074814",
+    "firebase_url": "https://cvsu-de0cf-default-rtdb.firebaseio.com",
+    "project_id": "cvsu-de0cf",
+    "storage_bucket": "cvsu-de0cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172993074814:android:ba30dd5f2e4fbbaafe2a2f",
+        "android_client_info": {
+          "package_name": "com.example.studentportal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFvIKa40_WbrT-2hh9j1GcNiU-njvM7Z0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
