@@ -49,5 +49,8 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:22.1.0")
     implementation("com.google.firebase:firebase-database:20.2.1")
 
+    implementation ("com.mikhaellopez:circularimageview:4.3.1")
+
+
 
 }
