@@ -4,104 +4,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/studentnumber_et"
+
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Student Number"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2"
         app:layout_constraintWidth_percent=".8"
-        app:layout_constraintVertical_bias=".1"/>
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
 
-    <EditText
-        android:id="@+id/firstname_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="First name"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentnumber_et"
-        app:layout_constraintWidth_percent=".8"/>
+            <EditText
+                android:id="@+id/studentnumber_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Student Number"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="20dp" />
 
-    <EditText
-        android:id="@+id/middlename_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="Middle name"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstname_et"
-        app:layout_constraintWidth_percent=".8" />
+            <EditText
+                android:id="@+id/firstname_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="First name"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="20dp" />
 
-    <EditText
-        android:id="@+id/lastname_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="Last name"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/middlename_et"
-        app:layout_constraintWidth_percent=".8" />
+            <EditText
+                android:id="@+id/middlename_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Middle name"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="20dp" />
+
+            <EditText
+                android:id="@+id/lastname_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Last name"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="20dp" />
 
 
-    <EditText
-        android:id="@+id/email_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:layout_marginTop="12dp"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastname_et"
-        app:layout_constraintWidth_percent=".8" />
+            <EditText
+                android:id="@+id/email_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Email"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastname_et"
+                app:layout_constraintWidth_percent=".8" />
 
 
-    <EditText
-        android:id="@+id/password_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:layout_marginTop="12dp"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_et"
-        app:layout_constraintWidth_percent=".8"/>
+            <EditText
+                android:id="@+id/password_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Password"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="20dp" />
 
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_bg"
-        android:fontFamily="sans-serif-medium"
-        android:text="Signup"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_et"
-        app:layout_constraintWidth_percent=".8" />
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/button_bg"
+                android:fontFamily="sans-serif-medium"
+                android:text="Signup"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
