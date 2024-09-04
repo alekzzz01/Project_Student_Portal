@@ -79,6 +79,7 @@ public class SignUpTabFragment extends Fragment  {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             saveUserToDatabase(user.getUid(), studentNum, firstName, middleName, lastName, emailAddress);
+                            sendVerificationEmail(user);
                         }
                         Toast.makeText(getActivity(), "Registration Successful", Toast.LENGTH_SHORT).show();
                     } else {
@@ -105,6 +106,16 @@ public class SignUpTabFragment extends Fragment  {
                 });
 
 
+    }
+
+    private void sendVerificationEmail(FirebaseUser user){
+        user.sendEmailVerification().addOnCompleteListener(task -> {
+           if (task.isSuccessful()) {
+               Toast.makeText(getActivity(), "Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
+           } else {
+               Toast.makeText(getActivity(), "Failed to send verification email", Toast.LENGTH_SHORT).show();
+           }
+        });
     }
 }
 
