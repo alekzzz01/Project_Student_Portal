@@ -33,6 +33,7 @@ public class SignUpTabFragment extends Fragment  {
     FirebaseAuth mAuth;
     DatabaseReference mDatabase;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.signup_tab_fragment, container, false);
@@ -46,7 +47,7 @@ public class SignUpTabFragment extends Fragment  {
         lname = root.findViewById(R.id.lastname_et);
         email = root.findViewById(R.id.email_et);
         password = root.findViewById(R.id.password_et);
-        signupbutton = root.findViewById(R.id.signup_btn);
+        signupbutton = root.findViewById(R.id.button);
 
         signupbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +70,7 @@ public class SignUpTabFragment extends Fragment  {
         return root;
 
     }
+
 
     private void registerUser(String studentNum, String firstName, String middleName, String lastName, String emailAddress, String password) {
         mAuth.createUserWithEmailAndPassword(emailAddress, password)
@@ -101,6 +103,8 @@ public class SignUpTabFragment extends Fragment  {
                        Toast.makeText(getActivity(), "Failed to save user data", Toast.LENGTH_SHORT).show();
                    }
                 });
+
+
     }
 }
 
