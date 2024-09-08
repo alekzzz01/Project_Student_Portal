@@ -13,10 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@drawable/background2"
+            tools:ignore="MissingConstraints" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="120dp"
             android:background="@drawable/background_bg"
             android:paddingHorizontal="24dp"
             android:paddingVertical="16dp">
@@ -264,7 +272,7 @@
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_marginRight="16dp"
-
+            android:layout_marginTop="52dp"
             android:src="@drawable/ic_launcher_background"
             app:civ_border_color="#FFCC00"
             app:civ_border_width="2dp"
