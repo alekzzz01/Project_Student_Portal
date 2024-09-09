@@ -1,21 +1,18 @@
 package com.example.studentportal;
 
 import android.content.Intent;
-import android.media.Image;
+
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
+
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.HorizontalScrollView;
+
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +27,11 @@ import com.google.firebase.database.ValueEventListener;
 public class fragment_dashboard extends Fragment {
 
     TextView name_header;
-    private ImageView[] dots;
+
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    private ImageView calendar, grades, schedule;
+
 
 
     @Override
@@ -49,9 +46,7 @@ public class fragment_dashboard extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
         name_header = rootView.findViewById(R.id.et_Name);
-        calendar = rootView.findViewById(R.id.calendar);
-        grades = rootView.findViewById(R.id.grades);
-        schedule = rootView.findViewById(R.id.schedule);
+
 
         // Retrieve the current logged-in user
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -60,63 +55,19 @@ public class fragment_dashboard extends Fragment {
             loadUserName(uid);  // Load the name from Firebase Database
         }
 
-        // Initialize the HorizontalScrollView and its child LinearLayout
-        HorizontalScrollView horizontalScrollView = rootView.findViewById(R.id.horizontalScrollView2);
-        LinearLayout cardContainer = rootView.findViewById(R.id.cardContainer);
-
-        // Get the number of CardViews in the container
-        int numberOfDots = cardContainer.getChildCount(); // Automatically counts the number of CardView children
-
-        // Initialize the dots layout
-        LinearLayout dotsLayout = rootView.findViewById(R.id.dotsLayout);
-        dots = new ImageView[numberOfDots];
-
-        // Add the dots to the layout
-        for (int i = 0; i < numberOfDots; i++) {
-            dots[i] = new ImageView(getContext());
-            dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.inactive_dot));
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            );
-            params.setMargins(8, 0, 8, 0);
-            dotsLayout.addView(dots[i], params);
-        }
-
-        // Set the first dot as active
-        if (dots.length > 0) {
-            dots[0].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.active_dot));
-        }
-
-        // Set the scroll listener to update dots based on scroll position
-        horizontalScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+        ImageView kebabMenu = rootView.findViewById(R.id.kebab_menu);
+        kebabMenu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                // Calculate the current position
-                int totalScrollRange = horizontalScrollView.getChildAt(0).getWidth() - horizontalScrollView.getWidth();
-                int currentPosition = (int) (((float) scrollX / totalScrollRange) * (numberOfDots - 1));
-
-                // Update dots
-                updateDots(currentPosition);
+            public void onClick(View v) {
+                showPopupMenu(v);
             }
         });
-
-
-
 
         return rootView;
     }
 
 
-    private void updateDots(int currentPosition) {
-        for (int i = 0; i < dots.length; i++) {
-            if (i == currentPosition) {
-                dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.active_dot));
-            } else {
-                dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.inactive_dot));
-            }
-        }
-    }
+
 
     // Method to load the user's name from Firebase Database
     private void loadUserName(String uid) {
@@ -144,4 +95,38 @@ public class fragment_dashboard extends Fragment {
             }
         });
     }
+
+
+    // Method to show PopupMenu for announcement actions
+    private void showPopupMenu(View view) {
+        PopupMenu popupMenu = new PopupMenu(getActivity(), view);
+        popupMenu.getMenuInflater().inflate(R.menu.kebab_menu, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.action_view_details) {
+                // View Announcement Details
+                Toast.makeText(getActivity(), "View Announcement Details", Toast.LENGTH_SHORT).show();
+                return true;
+            } else if (menuItem.getItemId() == R.id.action_delete) {
+                // Delete Announcement
+                Toast.makeText(getActivity(), "Announcement Deleted", Toast.LENGTH_SHORT).show();
+                // Implement announcement deletion logic here
+                return true;
+            } else if (menuItem.getItemId() == R.id.action_share) {
+                // Share Announcement
+                Toast.makeText(getActivity(), "Share Announcement", Toast.LENGTH_SHORT).show();
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out this announcement!");
+                shareIntent.setType("text/plain");
+                startActivity(Intent.createChooser(shareIntent, "Share via"));
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        popupMenu.show();
+    }
+
 }
