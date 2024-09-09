@@ -51,7 +51,11 @@ dependencies {
     implementation("com.google.firebase:firebase-database:20.2.1")
 
     implementation("com.mikhaellopez:circularimageview:4.3.1")
-    implementation("com.google.android.material:material:1.6.1")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation ("com.applandeo:material-calendar-view:1.9.0-rc03")
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
+
+
 
 
 

@@ -25,36 +25,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="120dp"
-            android:paddingVertical="16dp"
-            android:paddingHorizontal="24dp"
             android:background="@drawable/background_bg"
-            >
+
+            android:paddingVertical="24dp"
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Welcome"
-                    android:textSize="14sp"
-                    android:textColor="#0D1B34"
-                    android:fontFamily="@font/poppinsregular"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsregular"
+                android:text="Welcome"
+                android:textColor="#0D1B34"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
                 android:id="@+id/et_Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:layout_marginTop="12dp"
                 android:fontFamily="@font/poppinsbold"
                 android:text="Student Name"
                 android:textColor="#0D1B34"
-                android:textSize="20sp"
+                android:textSize="24sp"
+                android:layout_marginStart="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,148 +64,148 @@
                 android:id="@+id/materialDivider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dividerColor="#027202"
                 android:layout_marginTop="20dp"
+                app:dividerColor="#027202"
                 app:layout_constraintTop_toBottomOf="@+id/et_Name"
                 tools:layout_editor_absoluteX="24dp" />
 
 
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/curve_bg_green"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialDivider">
+<!--            <HorizontalScrollView-->
+<!--                android:id="@+id/horizontalScrollView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                android:background="@drawable/curve_bg_green"-->
+<!--                android:paddingHorizontal="12dp"-->
+<!--                android:paddingVertical="20dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/materialDivider">-->
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:orientation="horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="start"-->
+<!--                    android:orientation="horizontal">-->
 
-                    <!-- 1st nav -->
+<!--                    &lt;!&ndash; 1st nav &ndash;&gt;-->
 
-                    <LinearLayout
-                        android:id="@+id/nav1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/nav1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginRight="20dp"-->
+<!--                        android:orientation="vertical">-->
 
-                        <ImageView
-                            android:id="@+id/calendar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_gravity="center"
-                            android:background="@drawable/icon1" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/calendar"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentTop="true"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/icon1" />-->
 
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:fontFamily="@font/poppinslight"
-                            android:text="Calendar"
-                            android:textSize="12sp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView4"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentBottom="true"-->
+<!--                            android:fontFamily="@font/poppinslight"-->
+<!--                            android:text="Calendar"-->
+<!--                            android:textSize="12sp" />-->
 
-                    </LinearLayout>
+<!--                    </LinearLayout>-->
 
-                    <!-- 2nd nav -->
+<!--                    &lt;!&ndash; 2nd nav &ndash;&gt;-->
 
-                    <LinearLayout
-                        android:id="@+id/nav2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/nav2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginRight="20dp"-->
+<!--                        android:orientation="vertical">-->
 
-                        <ImageView
-                            android:id="@+id/grades"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_gravity="center"
-                            android:background="@drawable/icon2" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/grades"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentTop="true"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/icon2" />-->
 
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:fontFamily="@font/poppinslight"
-                            android:text="View Grades"
-                            android:textSize="12sp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView5"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentBottom="true"-->
+<!--                            android:fontFamily="@font/poppinslight"-->
+<!--                            android:text="View Grades"-->
+<!--                            android:textSize="12sp" />-->
 
-                    </LinearLayout>
-
-
-                    <!-- 3rd nav -->
-
-                    <LinearLayout
-                        android:id="@+id/nav3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_gravity="center"
-                            android:background="@drawable/icon3" />
-
-                        <TextView
-                            android:id="@+id/textView7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:fontFamily="@font/poppinslight"
-                            android:text="Campus Map"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
+<!--                    </LinearLayout>-->
 
 
-                    <!-- 3rd nav -->
+<!--                    &lt;!&ndash; 3rd nav &ndash;&gt;-->
 
-                    <LinearLayout
-                        android:id="@+id/nav4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="32dp"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/nav3"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginRight="20dp"-->
+<!--                        android:orientation="vertical">-->
 
-                        <ImageView
-                            android:id="@+id/schedule"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_gravity="center"
-                            android:background="@drawable/icon4" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentTop="true"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/icon3" />-->
 
-                        <TextView
-                            android:id="@+id/textView6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:fontFamily="@font/poppinslight"
-                            android:text="Class Schedules"
-                            android:textSize="12sp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView7"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentBottom="true"-->
+<!--                            android:fontFamily="@font/poppinslight"-->
+<!--                            android:text="Campus Map"-->
+<!--                            android:textSize="12sp" />-->
 
-                    </LinearLayout>
-
-
-                </LinearLayout>
+<!--                    </LinearLayout>-->
 
 
-            </HorizontalScrollView>
+<!--                    &lt;!&ndash; 3rd nav &ndash;&gt;-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/nav4"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginRight="32dp"-->
+<!--                        android:orientation="vertical">-->
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/schedule"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentTop="true"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/icon4" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView6"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentBottom="true"-->
+<!--                            android:fontFamily="@font/poppinslight"-->
+<!--                            android:text="Class Schedules"-->
+<!--                            android:textSize="12sp" />-->
+
+<!--                    </LinearLayout>-->
+
+
+<!--                </LinearLayout>-->
+
+
+<!--            </HorizontalScrollView>-->
 
 
             <TextView
@@ -213,152 +213,225 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:fontFamily="@font/poppinsbold"
                 android:text="Announcements"
-                android:textSize="14sp"
                 android:textColor="#0D1B34"
+                android:textSize="20sp"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+                app:layout_constraintTop_toBottomOf="@+id/materialDivider" />
 
 
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8">
+            <TextView
 
-                <LinearLayout
-                    android:id="@+id/cardContainer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:orientation="horizontal">
-
-                    <!--          1st announcement Card View          -->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:background="@color/white"
-                        app:cardElevation="8dp"
-                        app:cardCornerRadius="12dp"
-
-                        >
-
-                        <LinearLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="16dp">
-
-                            <TextView
-                                android:id="@+id/an_Title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/poppinssemibold"
-                                android:text="First Announcement"
-                                android:textColor="#0D1B34"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:id="@+id/an_SubTitle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-
-                                android:fontFamily="@font/poppinsregular"
-                                android:text="No classes for September 4, 2024"
-                                android:textColor="#0D1B34"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/an_Time"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:fontFamily="@font/poppinsregular"
-                                android:text="30 minutes ago"
-                                android:textColor="#8696BB"
-                                android:textSize="12sp" />
-
-                        </LinearLayout>
-
-
-                    </androidx.cardview.widget.CardView>
-
-
-                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:background="@color/white"
-                        app:cardElevation="8dp"
-                        app:cardCornerRadius="12dp"
-
-                        >
-
-                        <LinearLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="16dp">
-
-                            <TextView
-                                android:id="@+id/an_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/poppinssemibold"
-                                android:text="First Announcement"
-                                android:textColor="#0D1B34"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:id="@+id/an_SubTitle2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-
-                                android:fontFamily="@font/poppinsregular"
-                                android:text="No classes for September 4, 2024"
-                                android:textColor="#0D1B34"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/an_Time2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:fontFamily="@font/poppinsregular"
-                                android:text="30 minutes ago"
-                                android:textColor="#8696BB"
-                                android:textSize="12sp" />
-
-                        </LinearLayout>
-
-
-                    </androidx.cardview.widget.CardView>
-
-
-                </LinearLayout>
-
-
-            </HorizontalScrollView>
-
-            <LinearLayout
-                android:id="@+id/dotsLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="See All"
+                android:textColor="#0D1B34"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
+                app:layout_constraintHorizontal_bias="0.989"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toBottomOf="@+id/materialDivider" />
+
+            <LinearLayout
+                android:id="@+id/cardContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+                <!--          1st announcement Card View          -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+
+                    >
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:background="@drawable/curve_bg_yellow"
+                                android:fontFamily="@font/poppinssemibold"
+                                android:gravity="center_horizontal|end"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="2dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:text="GENERAL"
+                                android:textColor="#0D1B34"
+                                android:textSize="12sp" />
+
+                            <ImageView
+                                android:id="@+id/kebab_menu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+
+                                android:clickable="true"
+                                android:contentDescription="Kebab Menu"
+                                android:focusable="true"
+                                android:padding="8dp"
+                                android:src="@drawable/kebab_svgrepo_com" />
+
+
+
+                        </RelativeLayout>
+
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppinssemibold"
+                            android:text="Update on the typhoon hitting on the Philippines"
+                            android:textAlignment="viewStart"
+                            android:textColor="#0D1B34"
+                            android:layout_marginTop="12dp"
+                            android:textSize="14sp" />
+
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/poppinsregular"
+                            android:text="30 minutes ago"
+
+                            android:textColor="#8696BB"
+                            android:textSize="12sp"
+                            tools:ignore="DuplicateIds" />
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+
+                    >
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:background="@drawable/curve_bg_yellow"
+                                android:fontFamily="@font/poppinssemibold"
+                                android:gravity="center_horizontal|end"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="2dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:text="GENERAL"
+                                android:textColor="#0D1B34"
+                                android:textSize="12sp" />
+
+                            <ImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+
+                                android:clickable="true"
+                                android:contentDescription="Kebab Menu"
+                                android:focusable="true"
+                                android:padding="8dp"
+                                android:src="@drawable/kebab_svgrepo_com" />
+
+
+
+                        </RelativeLayout>
+
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppinssemibold"
+                            android:text="Update on the typhoon hitting on the Philippines"
+                            android:textAlignment="viewStart"
+                            android:textColor="#0D1B34"
+                            android:layout_marginTop="12dp"
+                            android:textSize="14sp" />
+
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/poppinsregular"
+                            android:text="30 minutes ago"
+
+                            android:textColor="#8696BB"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
