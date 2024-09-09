@@ -143,6 +143,7 @@
 
 
             <TableLayout
+                android:id="@+id/tableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:circularflow_defaultRadius="12dp"
@@ -179,86 +180,7 @@
 
                 </TableRow>
 
-                <TableRow>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:fontFamily="@font/poppinsmedium"
-                        android:gravity="center_horizontal"
-                        android:padding="10sp"
-                        android:text='Rizal: Life, Works...'
-                        android:textColor="#0D1B34"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:fontFamily="@font/poppinsmedium"
-                        android:gravity="center_horizontal"
-                        android:padding="10sp"
-                        android:text='2.00'
-                        android:textColor="#0D1B34"
-                        android:textSize="12sp" />
-
-
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:fontFamily="@font/poppinsmedium"
-                        android:gravity="center_horizontal"
-                        android:padding="10sp"
-                        android:text='Network Management'
-                        android:textColor="#0D1B34"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:fontFamily="@font/poppinsmedium"
-                        android:gravity="center_horizontal"
-                        android:padding="10sp"
-                        android:text='2.00'
-                        android:textColor="#0D1B34"
-                        android:textSize="12sp" />
-
-
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:fontFamily="@font/poppinsmedium"
-                        android:gravity="center_horizontal"
-                        android:padding="10sp"
-                        android:text='GWA:'
-                        android:textColor="#0D1B34"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:fontFamily="@font/poppinsmedium"
-                        android:gravity="center_horizontal"
-                        android:padding="10sp"
-                        android:text='2.50'
-                        android:textColor="#0D1B34"
-                        android:textSize="12sp" />
-
-
-                </TableRow>
 
             </TableLayout>
 
