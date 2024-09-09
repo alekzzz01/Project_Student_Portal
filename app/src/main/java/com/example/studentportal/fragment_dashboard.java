@@ -1,24 +1,64 @@
 package com.example.studentportal;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.HorizontalScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class fragment_dashboard extends Fragment {
 
+    TextView name_header;
     private ImageView[] dots;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
+
+    private ImageView calendar, grades, schedule;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        // Initialize Firebase Auth and Database reference
+
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
+        name_header = rootView.findViewById(R.id.et_Name);
+        calendar = rootView.findViewById(R.id.calendar);
+        grades = rootView.findViewById(R.id.grades);
+        schedule = rootView.findViewById(R.id.schedule);
+
+        // Retrieve the current logged-in user
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+            loadUserName(uid);  // Load the name from Firebase Database
+        }
 
         // Initialize the HorizontalScrollView and its child LinearLayout
         HorizontalScrollView horizontalScrollView = rootView.findViewById(R.id.horizontalScrollView2);
@@ -61,8 +101,12 @@ public class fragment_dashboard extends Fragment {
             }
         });
 
+
+
+
         return rootView;
     }
+
 
     private void updateDots(int currentPosition) {
         for (int i = 0; i < dots.length; i++) {
@@ -72,5 +116,32 @@ public class fragment_dashboard extends Fragment {
                 dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.inactive_dot));
             }
         }
+    }
+
+    // Method to load the user's name from Firebase Database
+    private void loadUserName(String uid) {
+        mDatabase.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String firstName = dataSnapshot.child("firstName").getValue(String.class);
+                    String lastName = dataSnapshot.child("lastName").getValue(String.class);
+
+                    // Set the name in the header TextView
+                    if (firstName != null && lastName != null) {
+                        name_header.setText(firstName + " " + lastName);
+                    } else {
+                        Toast.makeText(getActivity(), "Failed to load user name", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "User data not found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getActivity(), "Database Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
