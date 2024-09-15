@@ -4,70 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn ="navigation_view">
 
-    <group
-        android:checkableBehavior="single">
+    <group android:checkableBehavior="single">
 
+        <item android:title="Information">
+
+            <menu>
+                <group>
+                    <item
+                        android:id="@+id/nav_home"
+                        android:icon="@drawable/menu_home"
+                        android:title="Home" />
+
+
+                    <item
+                        android:id="@+id/nav_grades"
+                        android:icon="@drawable/menu_grade"
+                        android:title="Grades" />
+
+                    <item
+                        android:id="@+id/nav_Calendar"
+                        android:icon="@drawable/menu_calendar"
+                        android:title="Campus Calendar" />
+
+                    <item
+                        android:id="@+id/nav_Schedule"
+                        android:icon="@drawable/menu_schedule"
+                        android:title="Class Schedule" />
+
+                    <item
+                        android:id="@+id/nav_Subject"
+                        android:icon="@drawable/menu_subjects"
+                        android:title="Enrolled Subjects" />
+
+                </group>
+            </menu>
+
+        </item>
+
+        <item android:title="Others">
+            <menu>
+                <group>
+                    <item
+                        android:id="@+id/nav_Forms"
+                        android:icon="@drawable/menu_form"
+                        android:title="Downloadable Forms" />
+                </group>
+            </menu>
+
+        </item>
 
         <item
-            android:id="@+id/nav_home"
-            android:title="Home"
-            android:icon="@drawable/home_menu"
-            />
-
-
-        <item
-            android:id="@+id/nav_grades"
-            android:title="Grades"
-            android:icon="@drawable/grade_menu"
-            />
-
-        <item
-            android:id="@+id/nav_Calendar"
-            android:title="Campus Calendar"
-            android:icon="@drawable/calendar_menu"
-            />
-
-        <item
-            android:id="@+id/nav_Schedule"
-            android:title="Class Schedule"
-            android:icon="@drawable/calendar_menu"
-            />
-
-        <item
-            android:id="@+id/nav_Subject"
-            android:title="Enrolled Subjects"
-            android:icon="@drawable/calendar_menu"
-            />
-
-        <item
-            android:id="@+id/nav_Forms"
-            android:title="Downloadable Forms"
-            android:icon="@drawable/calendar_menu"
-            />
-
-
-
-
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/menu_logout"
+            android:title="Logout" />
 
 
     </group>
 
 
-
-
-
-
-
-    <item
-        android:title="">
-
-        <menu>
-            <item
-                android:id="@+id/nav_logout"
-                android:title="Logout"
-                />
-        </menu>
-
-    </item>
 
 </menu>
