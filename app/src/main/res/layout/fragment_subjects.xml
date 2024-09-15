@@ -82,60 +82,30 @@
 
 
 
-
-
-
-
-            <LinearLayout
-                android:id="@+id/linearLayout"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFCC00"
-                android:orientation="horizontal"
-                android:paddingHorizontal="8dp"
-                android:paddingBottom="4dp"
-                android:paddingTop="2dp"
-                android:layout_marginTop="16dp"
+                android:hint="@string/select"
+                android:layout_marginTop="12dp"
                 app:layout_constraintTop_toBottomOf="@+id/materialDivider"
-                tools:layout_editor_absoluteX="16dp">
+                tools:layout_editor_absoluteX="24dp">
 
 
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="3dp"
-                    android:fontFamily="@font/poppinssemibold"
-                    android:text="School Year and Term: "
-                    android:textColor="#0D1B34"
-                    android:textSize="12sp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                <AutoCompleteTextView
+                    android:id="@+id/auto_complete_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:hint="@string/select"
-                    app:layout_constraintTop_toBottomOf="@+id/button3">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/auto_complete_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
-                        android:inputType="none"
-                        android:textSize="12sp"
-                        app:layout_constraintTop_toBottomOf="@+id/studentNumberTitle"
-                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+                    android:layout_marginTop="316dp"
+                    android:inputType="none"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toBottomOf="@+id/studentNumberTitle"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                    tools:layout_editor_absoluteX="21dp" />
 
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-            </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <TableLayout
@@ -146,7 +116,7 @@
                 android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
 
                 <TableRow android:background="#58AF58">
