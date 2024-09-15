@@ -22,19 +22,23 @@
                         android:title="Grades" />
 
                     <item
-                        android:id="@+id/nav_Calendar"
-                        android:icon="@drawable/menu_calendar"
-                        android:title="Campus Calendar" />
-
-                    <item
                         android:id="@+id/nav_Schedule"
                         android:icon="@drawable/menu_schedule"
                         android:title="Class Schedule" />
+
 
                     <item
                         android:id="@+id/nav_Subject"
                         android:icon="@drawable/menu_subjects"
                         android:title="Enrolled Subjects" />
+
+
+                    <item
+                        android:id="@+id/nav_Calendar"
+                        android:icon="@drawable/menu_calendar"
+                        android:title="Campus Calendar" />
+
+
 
                 </group>
             </menu>
