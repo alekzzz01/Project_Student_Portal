@@ -1,21 +1,25 @@
 package com.example.studentportal;
 
+import android.app.Activity;
 import android.content.Intent;
-
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,37 +27,52 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class fragment_dashboard extends Fragment {
 
+    private static final int PICK_IMAGE_REQUEST = 1;
+
     TextView name_header;
+    ImageView profileImage; // Profile image view
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private StorageReference mStorage;
 
-
-
+    Uri imageUri;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        // Initialize Firebase Auth and Database reference
-
+        // Initialize Firebase Auth, Database, and Storage reference
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
-        name_header = rootView.findViewById(R.id.et_Name);
+        mStorage = FirebaseStorage.getInstance().getReference("profile_images");
 
+        name_header = rootView.findViewById(R.id.et_Name);
+        profileImage = rootView.findViewById(R.id.profileimage); // Assuming profile_image is the ID of the image view
 
         // Retrieve the current logged-in user
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String uid = currentUser.getUid();
-            loadUserName(uid);  // Load the name from Firebase Database
+            loadUserName(uid); // Load the name from Firebase Database
+            loadProfileImage(uid); // Load the profile image from Firebase Storage
         }
+
+        // Set up onClick for profile image to select new image
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFileChooser();
+            }
+        });
 
         ImageView kebabMenu = rootView.findViewById(R.id.kebab_menu);
         kebabMenu.setOnClickListener(new View.OnClickListener() {
@@ -65,9 +84,6 @@ public class fragment_dashboard extends Fragment {
 
         return rootView;
     }
-
-
-
 
     // Method to load the user's name from Firebase Database
     private void loadUserName(String uid) {
@@ -96,6 +112,73 @@ public class fragment_dashboard extends Fragment {
         });
     }
 
+    // Method to load the user's profile image from Firebase Storage
+    private void loadProfileImage(String uid) {
+        StorageReference profileRef = mStorage.child(uid + ".jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                // Load image into ImageView using Glide
+                Glide.with(getActivity())
+                        .load(uri)
+                        .into(profileImage);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(getActivity(), "Failed to load profile image", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Method to open file chooser for selecting image
+    private void openFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
+            imageUri = data.getData();
+            uploadImageToFirebase();
+        }
+    }
+
+    // Method to upload the selected image to Firebase Storage
+    private void uploadImageToFirebase() {
+        if (imageUri != null) {
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            if (currentUser != null) {
+                String uid = currentUser.getUid();
+                StorageReference fileReference = mStorage.child(uid + ".jpg");
+
+                fileReference.putFile(imageUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        Glide.with(getActivity()).load(uri).into(profileImage);
+                                        Toast.makeText(getActivity(), "Profile image updated", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getActivity(), "Failed to upload image", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        }
+    }
 
     // Method to show PopupMenu for announcement actions
     private void showPopupMenu(View view) {
@@ -128,5 +211,4 @@ public class fragment_dashboard extends Fragment {
 
         popupMenu.show();
     }
-
 }

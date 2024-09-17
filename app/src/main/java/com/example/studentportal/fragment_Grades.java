@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -16,6 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.bumptech.glide.Glide;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +41,7 @@ public class fragment_Grades extends Fragment {
 
     private TextView etName;
     private TextView studentNumber;
+    private ImageView profileImageView; // Add this for displaying profile image
 
     String[] schoolYears = {"2023-2024(3rd Year - Second Sem)", "2024-2025(4th Year - First Sem)"};
 
@@ -47,15 +53,16 @@ public class fragment_Grades extends Fragment {
         // Initialize Firebase Auth and Database Reference
         mAuth = FirebaseAuth.getInstance();
         dbReference = FirebaseDatabase.getInstance().getReference("users");
-        insertSampleGrade();
+        insertSampleGrade();  // Insert sample grades if needed
 
         // Initialize views
         autoCompleteTextView = rootView.findViewById(R.id.auto_complete_text);
         etName = rootView.findViewById(R.id.et_Name);
         studentNumber = rootView.findViewById(R.id.studentnumber);
         tableLayout = rootView.findViewById(R.id.tableLayout);
+        profileImageView = rootView.findViewById(R.id.profileimage); // Initialize the ImageView
 
-        // Set up AutoCompleteTextView
+        // Set up AutoCompleteTextView for selecting the semester
         adapterItems = new ArrayAdapter<>(getContext(), R.layout.list_item, schoolYears);
         autoCompleteTextView.setAdapter(adapterItems);
 
@@ -73,7 +80,7 @@ public class fragment_Grades extends Fragment {
         // Fetch and set user data
         fetchUserData();
 
-        // Populate table with initial grades
+        // Fetch grades for the initial selected semester
         fetchGradesForSelectedSemester(schoolYears[0]);
 
         return rootView;
@@ -92,10 +99,16 @@ public class fragment_Grades extends Fragment {
                         String firstName = dataSnapshot.child("firstName").getValue(String.class);
                         String lastName = dataSnapshot.child("lastName").getValue(String.class);
                         String studentNumberStr = dataSnapshot.child("studentNumber").getValue(String.class);
+                        String profileImageUrl = dataSnapshot.child("profileImageUrl").getValue(String.class);
 
                         // Update TextViews with user data
                         etName.setText(firstName + " " + lastName);
                         studentNumber.setText(studentNumberStr);
+
+                        // Load the profile image if it exists
+                        if (profileImageUrl != null) {
+                            Glide.with(getContext()).load(profileImageUrl).apply(new RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(profileImageView);
+                        }
                     } else {
                         Toast.makeText(getContext(), "No user data found", Toast.LENGTH_SHORT).show();
                     }
@@ -110,6 +123,8 @@ public class fragment_Grades extends Fragment {
             Toast.makeText(getContext(), "User not authenticated", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     private void fetchGradesForSelectedSemester(String semester) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -146,7 +161,7 @@ public class fragment_Grades extends Fragment {
         // Create a new table row
         TableRow row = new TableRow(getContext());
 
-        // Set layout parameters for the row to make the cells fill the row properly
+        // Set layout parameters for the row
         TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(
                 TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
         row.setLayoutParams(layoutParams);
@@ -176,7 +191,6 @@ public class fragment_Grades extends Fragment {
         tableLayout.addView(row);
     }
 
-
     private void insertSampleGrade() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
@@ -203,7 +217,4 @@ public class fragment_Grades extends Fragment {
             Toast.makeText(getContext(), "User not authenticated", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
 }

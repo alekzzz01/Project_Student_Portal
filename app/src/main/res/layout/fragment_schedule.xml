@@ -54,7 +54,7 @@
                 android:textColor="#0D1B34"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/studentnumber" />
 
@@ -184,6 +184,7 @@
 
         <!--        Profile View    -->
         <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/profilepicture"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_marginRight="16dp"
