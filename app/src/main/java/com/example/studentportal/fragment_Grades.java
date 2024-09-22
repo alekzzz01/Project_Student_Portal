@@ -107,7 +107,12 @@ public class fragment_Grades extends Fragment {
 
                         // Load the profile image if it exists
                         if (profileImageUrl != null) {
-                            Glide.with(getContext()).load(profileImageUrl).apply(new RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(profileImageView);
+                            Glide.with(getContext())
+                                    .load(profileImageUrl)
+                                    .apply(new RequestOptions()
+                                            .skipMemoryCache(true)
+                                            .diskCacheStrategy(DiskCacheStrategy.NONE))
+                                    .into(profileImageView);
                         }
                     } else {
                         Toast.makeText(getContext(), "No user data found", Toast.LENGTH_SHORT).show();
@@ -123,6 +128,7 @@ public class fragment_Grades extends Fragment {
             Toast.makeText(getContext(), "User not authenticated", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 
 

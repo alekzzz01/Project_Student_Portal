@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Handle logout
-//                        FirebaseAuth.getInstance().signOut();
+                        FirebaseAuth.getInstance().signOut();
                         redirectToSignInPage();
                     }
                 })
@@ -92,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Function to redirect to the Sign-In page after logout
     private void redirectToSignInPage() {
-//        Intent intent = new Intent(this, Signin_Page.class); // Replace with your SignInActivity
-//        startActivity(intent);
+        Intent intent = new Intent(this, LoginActivity.class); // Replace with your SignInActivity
+        startActivity(intent);
         finish(); // Close the current activity
     }
 }

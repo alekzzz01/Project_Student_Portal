@@ -27,6 +27,17 @@ public class LoginTabFragment extends Fragment {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        // Check if the user is already logged in
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            // User is logged in, redirect to the main activity
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            getActivity().finish(); // Close the login fragment/activity
+            return root; // Return early
+        }
+
         studentemail = root.findViewById(R.id.studentemail_et);
         password = root.findViewById(R.id.password_et);
         login = root.findViewById(R.id.login_btn);

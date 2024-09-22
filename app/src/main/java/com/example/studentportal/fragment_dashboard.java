@@ -161,11 +161,22 @@ public class fragment_dashboard extends Fragment {
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                // Get download URL and update database
                                 fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
+                                        // Load the new image into the ImageView
                                         Glide.with(getActivity()).load(uri).into(profileImage);
-                                        Toast.makeText(getActivity(), "Profile image updated", Toast.LENGTH_SHORT).show();
+
+                                        // Update the profile image URL in the database
+                                        mDatabase.child(uid).child("profileImageUrl").setValue(uri.toString())
+                                                .addOnCompleteListener(task -> {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(getActivity(), "Profile image updated", Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        Toast.makeText(getActivity(), "Failed to update database", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
                                     }
                                 });
                             }
@@ -179,6 +190,7 @@ public class fragment_dashboard extends Fragment {
             }
         }
     }
+
 
     // Method to show PopupMenu for announcement actions
     private void showPopupMenu(View view) {
