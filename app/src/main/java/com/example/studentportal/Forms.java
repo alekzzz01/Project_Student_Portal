@@ -63,6 +63,8 @@ public class Forms extends Fragment {
                 true // Disable searching
         );
 
+
+
         // Handle row click events
 // Handle row click events
         dtvTable.setOnClickListener(new OnWebViewComponentClickListener() {
