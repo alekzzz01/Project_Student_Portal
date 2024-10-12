@@ -30,7 +30,7 @@
                     <item
                         android:id="@+id/nav_Subject"
                         android:icon="@drawable/menu_subjects"
-                        android:title="Enrolled Subjects" />
+                        android:title="Subjects" />
 
 
                     <item
@@ -48,6 +48,11 @@
         <item android:title="Others">
             <menu>
                 <group>
+                    <item
+                        android:id="@+id/nav_Enroll"
+                        android:icon="@drawable/menu_enroll"
+                        android:title="Enrollment" />
+
                     <item
                         android:id="@+id/nav_Forms"
                         android:icon="@drawable/menu_form"
