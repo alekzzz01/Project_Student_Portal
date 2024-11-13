@@ -62,6 +62,9 @@ dependencies {
 
     annotationProcessor ("com.github.bumptech.glide:compiler:4.13.0")
     implementation ("com.github.bumptech.glide:glide:4.13.0")
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation ("mysql:mysql-connector-java:5.1.49")
+
 
 
 
