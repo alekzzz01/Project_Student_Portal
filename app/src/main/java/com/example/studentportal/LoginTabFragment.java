@@ -1,6 +1,8 @@
 package com.example.studentportal;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,27 +29,21 @@ public class LoginTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.login_tab_fragment, container, false);
 
-        // Initialize UI components
         studentemail = root.findViewById(R.id.studentemail_et);
         password = root.findViewById(R.id.password_et);
         login = root.findViewById(R.id.login_btn);
 
-        // Initialize ConnectionClass instance
         connectionClass = new ConnectionClass();
 
-        // Set OnClickListener for login button
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get the entered email and password
                 String emailAddress = studentemail.getText().toString().trim();
                 String pass = password.getText().toString().trim();
 
-                // Check if fields are not empty
                 if (emailAddress.isEmpty() || pass.isEmpty()) {
                     Toast.makeText(getActivity(), "Please fill out all fields", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Execute the login task if fields are filled
                     new LoginTask().execute(emailAddress, pass);
                 }
             }
@@ -56,9 +52,8 @@ public class LoginTabFragment extends Fragment {
         return root;
     }
 
-    // AsyncTask to handle database login on a background thread
     private class LoginTask extends AsyncTask<String, Void, Boolean> {
-        String email, password;
+        String email, password, studentNumber;
         String errorMessage = "";
 
         @Override
@@ -76,14 +71,15 @@ public class LoginTabFragment extends Fragment {
 
             try {
                 Log.d("LoginTask", "Connected to database. Verifying credentials...");
-                String query = "SELECT * FROM enrollpswdstudtbl WHERE emailaddress = ? AND secretdoor = ?";
+                String query = "SELECT studentnumber FROM enrollpswdstudtbl WHERE emailaddress = ? AND secretdoor = ?";
                 PreparedStatement stmt = conn.prepareStatement(query);
                 stmt.setString(1, email);
                 stmt.setString(2, password);
 
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
-                    Log.d("LoginTask", "Login successful");
+                    studentNumber = rs.getString("studentNumber");
+                    Log.d("LoginTask", "Login successful. studentNumber: " + studentNumber);
                     return true;
                 } else {
                     errorMessage = "Invalid email or password";
@@ -100,6 +96,12 @@ public class LoginTabFragment extends Fragment {
         @Override
         protected void onPostExecute(Boolean success) {
             if (success) {
+                // Save studentNumber in SharedPreferences
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("StudentSession", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("studentnumber", studentNumber);
+                editor.apply();
+
                 Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
