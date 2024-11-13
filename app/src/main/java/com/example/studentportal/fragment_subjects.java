@@ -1,6 +1,8 @@
 package com.example.studentportal;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,15 +26,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 
 public class fragment_subjects extends Fragment {
 
     TextView studentnumber, nameheader;
     CircularImageView profileImage;
+    private String currentStudentNumber; // Store current student number
 
-    private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
-    private FirebaseUser currentUser;
+
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -41,56 +48,60 @@ public class fragment_subjects extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_subjects, container, false);
 
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance().getReference("users");
+
 
         // Initialize UI components
         studentnumber = rootView.findViewById(R.id.studentnumber);
         nameheader = rootView.findViewById(R.id.et_Name);
         profileImage = rootView.findViewById(R.id.profile_image);
 
-        // Fetch user data (this will include the profile image)
-        fetchUserData();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        currentStudentNumber = sharedPreferences.getString("studentNumber", null);
+
+        if (currentStudentNumber != null) {
+            studentnumber.setText(currentStudentNumber); // Set the student number in the TextView
+            loadUserName(currentStudentNumber); // Load the name from database
+        } else {
+            Toast.makeText(getActivity(), "Student number not found", Toast.LENGTH_SHORT).show();
+        }
 
         return rootView;
     }
 
-    private void fetchUserData() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            String userId = currentUser.getUid();
-            DatabaseReference userRef = mDatabase.child(userId);
+    private void loadUserName(String currentStudentNumber) {
+        new Thread(() -> {
+            try {
+                // Get the connection using ConnectionClass
+                ConnectionClass connectionClass = new ConnectionClass();
+                Connection connection = connectionClass.CONN();
 
-            userRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        String firstName = dataSnapshot.child("firstName").getValue(String.class);
-                        String lastName = dataSnapshot.child("lastName").getValue(String.class);
-                        String studentNumberStr = dataSnapshot.child("studentNumber").getValue(String.class);
-                        String profileImageUrl = dataSnapshot.child("profileImageUrl").getValue(String.class);
+                // Query the enrollstudentinformation table
+                String query = "SELECT firstName, lastName FROM enrollstudentinformation WHERE studentNumber = ?";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, currentStudentNumber);
+                ResultSet resultSet = statement.executeQuery();
 
-                        // Update TextViews with user data
-                        nameheader.setText(firstName + " " + lastName);
-                        studentnumber.setText(studentNumberStr);
+                if (resultSet.next()) {
+                    String firstName = resultSet.getString("firstName");
+                    String lastName = resultSet.getString("lastName");
 
-                        // Load the profile image if it exists
-                        if (profileImageUrl != null) {
-                            Glide.with(getContext()).load(profileImageUrl).apply(new RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(profileImage);
-                        }
-                    } else {
-                        Toast.makeText(getContext(), "No user data found", Toast.LENGTH_SHORT).show();
-                    }
+                    // Update the name on the main thread (UI thread)
+                    getActivity().runOnUiThread(() -> nameheader.setText(firstName + " " + lastName));
+                } else {
+                    getActivity().runOnUiThread(() ->
+                            Toast.makeText(getActivity(), "User data not found", Toast.LENGTH_SHORT).show());
                 }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(getContext(), "Error fetching user data", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            Toast.makeText(getContext(), "User not authenticated", Toast.LENGTH_SHORT).show();
-        }
+                resultSet.close();
+                statement.close();
+                connection.close();
+
+            } catch (SQLException e) {
+                getActivity().runOnUiThread(() ->
+                        Toast.makeText(getActivity(), "Database Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+            }
+        }).start();
     }
+
+
 }

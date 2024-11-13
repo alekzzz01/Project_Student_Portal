@@ -97,10 +97,13 @@ public class LoginTabFragment extends Fragment {
         protected void onPostExecute(Boolean success) {
             if (success) {
                 // Save studentNumber in SharedPreferences
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("StudentSession", Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("studentnumber", studentNumber);
+                editor.putString("studentNumber", studentNumber);
                 editor.apply();
+
+                // Log the saved student number for debugging
+                Log.d("LoginTask", "Student Number saved: " + studentNumber);
 
                 Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
