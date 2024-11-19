@@ -144,7 +144,7 @@
                             android:fontFamily="@font/poppinsmedium"
                             android:gravity="center_horizontal"
                             android:padding="10sp"
-                            android:text='Days'
+                            android:text='Instructor'
                             android:textColor="@color/white"
                             android:textSize="14sp" />
 
