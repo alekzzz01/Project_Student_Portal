@@ -7,11 +7,11 @@ import java.sql.DriverManager;
 import java.util.Objects;
 
 public class ConnectionClass {
-    protected static String db = "cvsunaic_cvsudatabase123qwe";
-    protected static String ip = "10.0.2.2";
+    protected static String db = "u207026370_cvsunaic_cvsud";
+    protected static String ip = "153.92.15.31";
     protected static String port = "3306";
-    protected static String username = "root";
-    protected static String password = "";
+    protected static String username = "u207026370_root";
+    protected static String password = "@Dmin_cvsunaic123";
 
     public Connection CONN() {
         Connection conn = null;
