@@ -71,7 +71,7 @@ public class LoginTabFragment extends Fragment {
 
             try {
                 Log.d("LoginTask", "Connected to database. Verifying credentials...");
-                String query = "SELECT studentnumber FROM enrollpswdstudtbl WHERE emailaddress = ? AND secretdoor = ?";
+                String query = "SELECT studentnumber FROM enrollpswdstudtbl WHERE studentnumber = ? AND secretdoor = ?";
                 PreparedStatement stmt = conn.prepareStatement(query);
                 stmt.setString(1, email);
                 stmt.setString(2, password);

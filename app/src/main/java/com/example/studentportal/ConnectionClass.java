@@ -4,7 +4,6 @@ import android.util.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Objects;
 
 public class ConnectionClass {
     protected static String db = "u207026370_cvsunaic_cvsud";
