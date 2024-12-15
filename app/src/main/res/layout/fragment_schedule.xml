@@ -67,7 +67,7 @@
                     >
 
                     <LinearLayout
-
+                        android:id="@+id/fisheries"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -95,7 +95,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:fontFamily="@font/poppinssemibold"
-                            android:text="Click to Download"
+                            android:text="Click to View"
                             android:textAlignment="viewStart"
                             android:textColor="#0D1B34"
                             android:layout_marginTop="12dp"
@@ -119,7 +119,7 @@
                     >
 
                     <LinearLayout
-
+                        android:id="@+id/informationtech"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -147,7 +147,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:fontFamily="@font/poppinssemibold"
-                            android:text="Click to Download"
+                            android:text="Click to View"
                             android:textAlignment="viewStart"
                             android:textColor="#0D1B34"
                             android:layout_marginTop="12dp"
@@ -156,6 +156,119 @@
 
 
                     </LinearLayout>
+
+
+
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+
+                    >
+
+                    <LinearLayout
+                        android:id="@+id/management"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:background="@drawable/curve_bg_yellow"
+                            android:fontFamily="@font/poppinssemibold"
+                            android:gravity="center_horizontal|end"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="2dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="Management Department"
+                            android:textColor="#0D1B34"
+                            android:textSize="12sp" />
+
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:fontFamily="@font/poppinssemibold"
+                            android:text="Click to View"
+                            android:textAlignment="viewStart"
+                            android:textColor="#0D1B34"
+                            android:layout_marginTop="12dp"
+                            android:textSize="12sp" />
+
+
+
+                    </LinearLayout>
+
+
+
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+
+                    >
+
+                    <LinearLayout
+                        android:id="@+id/teachereducation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:background="@drawable/curve_bg_yellow"
+                            android:fontFamily="@font/poppinssemibold"
+                            android:gravity="center_horizontal|end"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="2dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="Teacher Education Department"
+                            android:textColor="#0D1B34"
+                            android:textSize="12sp" />
+
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:fontFamily="@font/poppinssemibold"
+                            android:text="Click to View"
+                            android:textAlignment="viewStart"
+                            android:textColor="#0D1B34"
+                            android:layout_marginTop="12dp"
+                            android:textSize="12sp" />
+
+
+
+                    </LinearLayout>
+
+
+
 
 
                 </androidx.cardview.widget.CardView>
