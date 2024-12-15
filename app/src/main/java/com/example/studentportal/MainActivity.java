@@ -55,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     navController.navigate(R.id.action_dashboard_to_schedule);
                 } else if (itemId == R.id.nav_Subject) {
                     navController.navigate(R.id.action_dashboard_to_Subject);
-                } else if (itemId == R.id.nav_Enroll) {
-                    navController.navigate(R.id.action_dashboard_to_enroll);
+
                 } else if (itemId == R.id.nav_Forms) {
                     navController.navigate(R.id.action_dashboard_to_form);
                 } else if (itemId == R.id.nav_logout) {

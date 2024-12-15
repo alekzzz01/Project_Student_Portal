@@ -48,8 +48,8 @@ public class fragment_dashboard extends Fragment {
             Toast.makeText(getActivity(), "Student number not found", Toast.LENGTH_SHORT).show();
         }
 
-        ImageView kebabMenu = rootView.findViewById(R.id.kebab_menu);
-        kebabMenu.setOnClickListener(v -> showPopupMenu(v));
+
+
 
         return rootView;
     }

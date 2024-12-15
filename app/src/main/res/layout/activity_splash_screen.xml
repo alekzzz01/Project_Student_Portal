@@ -19,26 +19,14 @@
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/logo" />
-
-
-        <TextView
-            android:id="@+id/et_Name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppinsbold"
-            android:text="CvSU-N: M-Kiosk"
-            android:textColor="#fff"
-            android:textSize="36sp"
-
-            />
-
+            android:layout_width="230dp"
+            android:layout_height="200dp"
+            android:background="@drawable/applogo" />
 
 
         <TextView
             android:id="@+id/et_Name1"
+            android:layout_marginTop="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppinsregular"
