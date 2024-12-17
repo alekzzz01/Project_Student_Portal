@@ -290,7 +290,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:fontFamily="@font/poppinssemibold"
-                            android:text="Click to Download"
+                            android:text="Click to View"
                             android:textAlignment="viewStart"
                             android:textColor="#0D1B34"
                             android:layout_marginTop="12dp"
@@ -342,7 +342,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:fontFamily="@font/poppinssemibold"
-                            android:text="Click to Download"
+                            android:text="Click to View"
                             android:textAlignment="viewStart"
                             android:textColor="#0D1B34"
                             android:layout_marginTop="12dp"
@@ -371,28 +371,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!--        Profile View    -->
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/profileimage"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
 
-            android:layout_marginTop="52dp"
-            android:layout_marginRight="16dp"
-            android:src="@drawable/ic_launcher_background"
-            app:civ_border_color="#FFCC00"
-            app:civ_border_width="2dp"
-            app:civ_shadow="true"
-
-            app:civ_shadow_color="#FFF0B4"
-            app:civ_shadow_radius="10dp"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
-
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

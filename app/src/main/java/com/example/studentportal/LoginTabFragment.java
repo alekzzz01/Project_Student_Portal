@@ -9,12 +9,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +27,7 @@ public class LoginTabFragment extends Fragment {
     EditText studentemail, password;
     Button login;
     ConnectionClass connectionClass;
+    AutoCompleteTextView role;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,6 +36,12 @@ public class LoginTabFragment extends Fragment {
         studentemail = root.findViewById(R.id.studentemail_et);
         password = root.findViewById(R.id.password_et);
         login = root.findViewById(R.id.login_btn);
+        role = root.findViewById(R.id.role);
+
+        String[] roles = getResources().getStringArray(R.array.roles_array);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, roles);
+        role.setAdapter(adapter);
+
 
         connectionClass = new ConnectionClass();
 
@@ -40,11 +50,12 @@ public class LoginTabFragment extends Fragment {
             public void onClick(View v) {
                 String emailAddress = studentemail.getText().toString().trim();
                 String pass = password.getText().toString().trim();
+                String selectedRole = role.getText().toString().trim();
 
                 if (emailAddress.isEmpty() || pass.isEmpty()) {
                     Toast.makeText(getActivity(), "Please fill out all fields", Toast.LENGTH_SHORT).show();
                 } else {
-                    new LoginTask().execute(emailAddress, pass);
+                    new LoginTask(selectedRole).execute(emailAddress, pass);
                 }
             }
         });
@@ -53,24 +64,26 @@ public class LoginTabFragment extends Fragment {
     }
 
     private class LoginTask extends AsyncTask<String, Void, Boolean> {
-        String email, password, studentNumber;
+        String email, password, studentNumber, role;
         String errorMessage = "";
+
+        // Constructor to accept the role
+        public LoginTask(String role) {
+            this.role = role;
+        }
 
         @Override
         protected Boolean doInBackground(String... params) {
             email = params[0];
             password = params[1];
 
-            Log.d("LoginTask", "Attempting to connect to database");
             Connection conn = connectionClass.CONN();
             if (conn == null) {
                 errorMessage = "Error in connection with SQL server";
-                Log.e("LoginTask", errorMessage);
                 return false;
             }
 
             try {
-                Log.d("LoginTask", "Connected to database. Verifying credentials...");
                 String query = "SELECT studentnumber FROM enrollpswdstudtbl WHERE studentnumber = ? AND secretdoor = ?";
                 PreparedStatement stmt = conn.prepareStatement(query);
                 stmt.setString(1, email);
@@ -78,17 +91,14 @@ public class LoginTabFragment extends Fragment {
 
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
-                    studentNumber = rs.getString("studentNumber");
-                    Log.d("LoginTask", "Login successful. studentNumber: " + studentNumber);
+                    studentNumber = rs.getString("studentnumber");
                     return true;
                 } else {
                     errorMessage = "Invalid email or password";
-                    Log.e("LoginTask", errorMessage);
                     return false;
                 }
             } catch (Exception e) {
                 errorMessage = "Error: " + e.getMessage();
-                Log.e("LoginTask", errorMessage);
                 return false;
             }
         }
@@ -96,16 +106,16 @@ public class LoginTabFragment extends Fragment {
         @Override
         protected void onPostExecute(Boolean success) {
             if (success) {
-                // Save studentNumber in SharedPreferences
+                // Save login session details in SharedPreferences
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("studentNumber", studentNumber);
+                editor.putString("role", role); // Save selected role
                 editor.apply();
 
-                // Log the saved student number for debugging
-                Log.d("LoginTask", "Student Number saved: " + studentNumber);
+                Toast.makeText(getActivity(), "Login Successful as " + role, Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT).show();
+                // Redirect to MainActivity
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
@@ -115,4 +125,5 @@ public class LoginTabFragment extends Fragment {
             }
         }
     }
+
 }
