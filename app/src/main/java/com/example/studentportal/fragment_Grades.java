@@ -38,7 +38,6 @@ public class fragment_Grades extends Fragment {
         // Initialize views
         etName = rootView.findViewById(R.id.et_Name);
         studentNumber = rootView.findViewById(R.id.studentnumber);
-        profileImageView = rootView.findViewById(R.id.profileimage);
         tableLayout = rootView.findViewById(R.id.tableLayout);
 
         // Get student number from SharedPreferences
