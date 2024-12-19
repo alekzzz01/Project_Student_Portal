@@ -42,6 +42,7 @@ public class LoginTabFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, roles);
         role.setAdapter(adapter);
 
+        role.setText(roles[0], false);
 
         connectionClass = new ConnectionClass();
 
@@ -84,14 +85,29 @@ public class LoginTabFragment extends Fragment {
             }
 
             try {
-                String query = "SELECT studentnumber FROM enrollpswdstudtbl WHERE studentnumber = ? AND secretdoor = ?";
-                PreparedStatement stmt = conn.prepareStatement(query);
-                stmt.setString(1, email);
-                stmt.setString(2, password);
+                String query;
+                PreparedStatement stmt;
+
+                if (role.equalsIgnoreCase("Visitor")) {
+                    query = "SELECT username FROM enrollvisitortbl WHERE username = ? AND password = ?";
+                    stmt = conn.prepareStatement(query);
+                    stmt.setString(1, email);
+                    stmt.setString(2, password);
+                } else {
+                    query = "SELECT studentnumber FROM enrollpswdstudtbl WHERE studentnumber = ? AND secretdoor = ?";
+                    stmt = conn.prepareStatement(query);
+                    stmt.setString(1, email);
+                    stmt.setString(2, password);
+                }
 
                 ResultSet rs = stmt.executeQuery();
+
                 if (rs.next()) {
-                    studentNumber = rs.getString("studentnumber");
+                    if (role.equalsIgnoreCase("Visitor")) {
+                        studentNumber = rs.getString("username"); // Save username for visitors
+                    } else {
+                        studentNumber = rs.getString("studentnumber"); // Save student number for students
+                    }
                     return true;
                 } else {
                     errorMessage = "Invalid email or password";
@@ -125,5 +141,6 @@ public class LoginTabFragment extends Fragment {
             }
         }
     }
+
 
 }
