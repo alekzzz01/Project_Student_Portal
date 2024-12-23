@@ -106,23 +106,7 @@
         android:id="@+id/action_form_to_dashboard"
         app:destination="@+id/nav_home" />
 
-    <!---->
-    <fragment
 
-        android:id="@+id/nav_Enroll"
-        android:name="com.example.studentportal.fragment_Enroll"
-        android:label="Forms"
-        tools:layout="@layout/fragment__enroll"/>
-
-
-    <action
-        android:id="@+id/action_dashboard_to_enroll"
-        app:destination="@+id/nav_Enroll" />
-
-
-    <action
-        android:id="@+id/action_enroll_to_dashboard"
-        app:destination="@+id/nav_home" />
 
 
 

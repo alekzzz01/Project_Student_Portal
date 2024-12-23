@@ -214,7 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinssemibold"
-                android:text="Announcements"
+                android:text="Latest Grades"
                 android:textColor="#0D1B34"
                 android:textSize="20sp"
                 android:layout_marginTop="24dp"
@@ -268,74 +268,40 @@
                         android:orientation="vertical"
                         android:padding="16dp">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
 
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-
-                                android:background="@drawable/curve_bg_yellow"
-                                android:fontFamily="@font/poppinssemibold"
-                                android:gravity="center_horizontal|end"
-                                android:paddingHorizontal="8dp"
-                                android:paddingVertical="2dp"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerVertical="true"
-                                android:text="GENERAL"
-                                android:textColor="#0D1B34"
-                                android:textSize="12sp" />
-
-                            <ImageView
-                                android:id="@+id/kebab_menu"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-
-                                android:clickable="true"
-                                android:contentDescription="Kebab Menu"
-                                android:focusable="true"
-                                android:padding="8dp"
-                                android:src="@drawable/kebab_svgrepo_com" />
-
-
-
-                        </RelativeLayout>
+                            android:background="@drawable/curve_bg_yellow"
+                            android:fontFamily="@font/poppinssemibold"
+                            android:gravity="center_horizontal|end"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="2dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="1st Sem. (2023-2024)"
+                            android:textColor="#0D1B34"
+                            android:textSize="12sp" />
 
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
                             android:fontFamily="@font/poppinssemibold"
-                            android:text="Update on the typhoon hitting on the Philippines"
+                            android:text="Click to View"
                             android:textAlignment="viewStart"
                             android:textColor="#0D1B34"
                             android:layout_marginTop="12dp"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
 
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:fontFamily="@font/poppinsregular"
-                            android:text="30 minutes ago"
-
-                            android:textColor="#8696BB"
-                            android:textSize="12sp"
-                            tools:ignore="DuplicateIds" />
 
                     </LinearLayout>
 
 
                 </androidx.cardview.widget.CardView>
-
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -354,72 +320,41 @@
                         android:orientation="vertical"
                         android:padding="16dp">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
 
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-
-                                android:background="@drawable/curve_bg_yellow"
-                                android:fontFamily="@font/poppinssemibold"
-                                android:gravity="center_horizontal|end"
-                                android:paddingHorizontal="8dp"
-                                android:paddingVertical="2dp"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerVertical="true"
-                                android:text="GENERAL"
-                                android:textColor="#0D1B34"
-                                android:textSize="12sp" />
-
-                            <ImageView
-
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-
-                                android:clickable="true"
-                                android:contentDescription="Kebab Menu"
-                                android:focusable="true"
-                                android:padding="8dp"
-                                android:src="@drawable/kebab_svgrepo_com" />
-
-
-
-                        </RelativeLayout>
+                            android:background="@drawable/curve_bg_yellow"
+                            android:fontFamily="@font/poppinssemibold"
+                            android:gravity="center_horizontal|end"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="2dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="2nd Sem. (2023-2024)"
+                            android:textColor="#0D1B34"
+                            android:textSize="12sp" />
 
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
                             android:fontFamily="@font/poppinssemibold"
-                            android:text="Update on the typhoon hitting on the Philippines"
+                            android:text="Click to View"
                             android:textAlignment="viewStart"
                             android:textColor="#0D1B34"
                             android:layout_marginTop="12dp"
-                            android:textSize="14sp" />
-
-
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:fontFamily="@font/poppinsregular"
-                            android:text="30 minutes ago"
-
-                            android:textColor="#8696BB"
                             android:textSize="12sp" />
+
+
 
                     </LinearLayout>
 
 
                 </androidx.cardview.widget.CardView>
+
 
 
 
@@ -436,28 +371,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!--        Profile View    -->
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/profileimage"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
 
-            android:layout_marginTop="52dp"
-            android:layout_marginRight="16dp"
-            android:src="@drawable/ic_launcher_background"
-            app:civ_border_color="#FFCC00"
-            app:civ_border_width="2dp"
-            app:civ_shadow="true"
-
-            app:civ_shadow_color="#FFF0B4"
-            app:civ_shadow_radius="10dp"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
-
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
