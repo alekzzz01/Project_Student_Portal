@@ -98,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
                     navController.navigate(R.id.action_dashboard_to_form);
                 } else if (itemId == R.id.nav_logout) {
                     showLogoutConfirmationDialog(); // Handle logout
+                } else if (itemId == R.id.nav_FeedbackForm) {
+                    navController.navigate(R.id.nav_FeedbackForm);
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START); // Close the drawer after item selection
