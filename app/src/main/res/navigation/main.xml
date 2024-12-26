@@ -107,6 +107,46 @@
         app:destination="@+id/nav_home" />
 
 
+    <!---->
+    <fragment
+
+        android:id="@+id/nav_StudentHandbook"
+        android:name="com.example.studentportal.fragment_studentHandbook"
+        android:label="Forms"
+        tools:layout="@layout/fragment_studenthandbook"/>
+
+
+    <action
+        android:id="@+id/action_dashboard_to_handbook"
+        app:destination="@+id/nav_StudentHandbook" />
+
+
+    <action
+        android:id="@+id/action_handbook_to_dashboard"
+        app:destination="@+id/nav_home" />
+
+
+    <!---->
+    <fragment
+
+        android:id="@+id/nav_FeedbackForm"
+        android:name="com.example.studentportal.fragment_FeedbackForm"
+        android:label="Forms"
+        tools:layout="@layout/fragment__feedback_form"/>
+
+
+    <action
+        android:id="@+id/action_dashboard_to_feedback"
+        app:destination="@+id/nav_StudentHandbook" />
+
+
+    <action
+        android:id="@+id/action_feedback_to_dashboard"
+        app:destination="@+id/nav_home" />
+
+
+
+
 
 
 

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment_FeedbackForm">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="#D9D9D9">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Feedback Form"
+            android:textColor="#027202"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="48dp"
+          />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="Please let us know how can we improve our service by giving your honest feedback."
+            android:textColor="#9296A2"
+            android:textSize="14sp"
+            />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/form_bg"
+>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="24dp"
+
+                >
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Full Name"
+                    android:textColor="#9296A2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints=""
+                    android:textSize="16sp"
+
+
+                    />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Purpose of Visit"
+                    android:textColor="#9296A2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints=""
+                    android:textSize="16sp"
+
+
+                    />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Attending Staff"
+                    android:textColor="#9296A2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+
+                    android:autofillHints=""
+                    android:textSize="16sp"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="1. How would you rate the politeness and friendliness of the office staff?"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Highly Satisfied - (5)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Very Satisfied - (4)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moderately Satisfied - (3)    "
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rarely Satisfied - (2)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not Satisfied - (1)"
+
+                        />
+
+
+                </RadioGroup>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="2. How satisfied are you with the quality of service provided by the office?"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Highly Satisfied - (5)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Very Satisfied - (4)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moderately Satisfied - (3)    "
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rarely Satisfied - (2)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not Satisfied - (1)"
+
+                        />
+
+
+                </RadioGroup>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="3. How would you rate the timeliness of the services provided by the office?"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Highly Satisfied - (5)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Very Satisfied - (4)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moderately Satisfied - (3)    "
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rarely Satisfied - (2)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not Satisfied - (1)"
+
+                        />
+
+
+                </RadioGroup>
+
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="#FFCC00"
+                    android:text="View Enrolled Subjects"
+                    android:textColor="#0D1B34"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+
+                    app:layout_constraintTop_toBottomOf="@+id/materialDivider"
+                    tools:layout_editor_absoluteX="24dp" />
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+
+</FrameLayout>
