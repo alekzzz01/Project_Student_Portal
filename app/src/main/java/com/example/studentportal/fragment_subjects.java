@@ -42,8 +42,7 @@ public class fragment_subjects extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_subjects, container, false);
 
         // Initialize UI components
-        studentnumber = rootView.findViewById(R.id.studentnumber);
-        nameheader = rootView.findViewById(R.id.et_Name);
+
         dropdown = rootView.findViewById(R.id.role);
         tableLayout = rootView.findViewById(R.id.tableLayout);
 

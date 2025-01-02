@@ -35,9 +35,7 @@ public class fragment_Grades extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment__grades, container, false);
 
-        // Initialize views
-        etName = rootView.findViewById(R.id.et_Name);
-        studentNumber = rootView.findViewById(R.id.studentnumber);
+
         tableLayout = rootView.findViewById(R.id.tableLayout);
 
         // Get student number from SharedPreferences

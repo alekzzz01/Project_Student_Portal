@@ -27,12 +27,14 @@
         <TextView
             android:id="@+id/et_Name1"
             android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="16dp"
+            android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppinsregular"
-            android:text="A wayfinding application for  Cavite State University - Naic"
+            android:text="A wayfinding application for  Cavite State University - Naic Campus"
             android:textColor="#fff"
-            android:textSize="11sp"
+            android:textSize="18sp"
 
             />
 
