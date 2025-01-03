@@ -42,7 +42,6 @@ public class fragment_subjects extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_subjects, container, false);
 
         // Initialize UI components
-
         dropdown = rootView.findViewById(R.id.role);
         tableLayout = rootView.findViewById(R.id.tableLayout);
 
@@ -50,6 +49,7 @@ public class fragment_subjects extends Fragment {
         currentStudentNumber = sharedPreferences.getString("studentNumber", null);
 
         if (currentStudentNumber != null) {
+            // Student number successfully retrieved
         } else {
             Toast.makeText(getActivity(), "Student number not found", Toast.LENGTH_SHORT).show();
         }
@@ -78,6 +78,19 @@ public class fragment_subjects extends Fragment {
 
         dropdown.setAdapter(adapter);
 
+        // Set default selection
+        String defaultSelection = "2023 - First Sem"; // Set your desired default option here
+        dropdown.setText(defaultSelection, false); // Set text without triggering listeners
+
+        // Extract default year and term from the selected default option
+        String[] defaultParts = defaultSelection.split(" - ");
+        String defaultYear = defaultParts[0];   // Extracts the year (e.g., "2023")
+        String defaultSemester = defaultParts[1];  // Extracts the semester (e.g., "First Sem" or "Second Sem")
+        String defaultTerm = defaultSemester.equals("First Sem") ? "1" : "2";
+
+        // Load subjects for the default selection
+        loadSubjects(defaultYear, defaultTerm);
+
         // Handle dropdown selection
         dropdown.setOnItemClickListener((parent, view, position, id) -> {
             String selected = schoolYearTermOptions[position];
@@ -92,8 +105,6 @@ public class fragment_subjects extends Fragment {
             loadSubjects(year, term);
         });
     }
-
-
 
     private void loadSubjects(String year, String term) {
         // Clear previous rows (except the header row)
@@ -187,6 +198,4 @@ public class fragment_subjects extends Fragment {
             Log.e("Table", "Total rows: " + tableLayout.getChildCount());
         });
     }
-
-
 }

@@ -7,7 +7,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,19 +24,17 @@ import java.sql.SQLException;
 
 public class fragment_Grades extends Fragment {
 
-    private TextView etName;
-    private TextView studentNumber;
-    private ImageView profileImageView;
-    private String currentStudentNumber;
-
+    private AutoCompleteTextView semesterDropdown;
     private TableLayout tableLayout;
+    private String currentStudentNumber;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment__grades, container, false);
 
-
+        // Initialize UI components
+        semesterDropdown = rootView.findViewById(R.id.role);
         tableLayout = rootView.findViewById(R.id.tableLayout);
 
         // Get student number from SharedPreferences
@@ -43,7 +42,7 @@ public class fragment_Grades extends Fragment {
         currentStudentNumber = sharedPreferences.getString("studentNumber", null);
 
         if (currentStudentNumber != null) {
-            loadGrades(currentStudentNumber);  // Load the grades from database
+            setupDropdown();
         } else {
             Toast.makeText(getActivity(), "Student number not found", Toast.LENGTH_SHORT).show();
         }
@@ -51,11 +50,46 @@ public class fragment_Grades extends Fragment {
         return rootView;
     }
 
-    // Load the user's name from the database
+    private void setupDropdown() {
+        // Define semester options
+        String[] semesterOptions = {
+                "FIRST SEMESTER",
+                "SECOND SEMESTER"
+        };
 
+        // Set up ArrayAdapter for the dropdown
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                getActivity(),
+                android.R.layout.simple_dropdown_item_1line,
+                semesterOptions
+        );
+        semesterDropdown.setAdapter(adapter);
 
-    // Load the grades for the current student
-    private void loadGrades(String studentNumber) {
+        // Set default selection
+        String defaultSelection = "FIRST SEMESTER"; // Default semester
+        semesterDropdown.setText(defaultSelection, false);
+
+        // Load grades for the default semester
+        loadGrades(currentStudentNumber, "2023-2024", "FIRST");
+
+        // Handle dropdown selection changes
+        semesterDropdown.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedSemester = semesterOptions[position];
+            String semester = selectedSemester.equals("FIRST SEMESTER") ? "FIRST" : "SECOND";
+
+            loadGrades(currentStudentNumber, "2023-2024", semester);
+        });
+    }
+
+    private void loadGrades(String studentNumber, String schoolYear, String semester) {
+        // Clear previous rows (except the header row)
+        getActivity().runOnUiThread(() -> {
+            int childCount = tableLayout.getChildCount();
+            if (childCount > 1) {
+                tableLayout.removeViews(1, childCount - 1); // Keep the header row
+            }
+        });
+
         new Thread(() -> {
             try {
                 // Get the connection using ConnectionClass
@@ -64,9 +98,11 @@ public class fragment_Grades extends Fragment {
 
                 if (connection != null) {
                     // Query to get grades for the student
-                    String query = "SELECT subjectcode, mygrade FROM enrollgradestbl WHERE studentNumber = ?";
+                    String query = "SELECT subjectCode, myGrade FROM enrollgradestbl WHERE studentNumber = ? AND schoolYear = ? AND semester = ?";
                     PreparedStatement statement = connection.prepareStatement(query);
                     statement.setString(1, studentNumber);
+                    statement.setString(2, schoolYear);
+                    statement.setString(3, semester);
                     ResultSet resultSet = statement.executeQuery();
 
                     // Iterate through the result and populate the table
