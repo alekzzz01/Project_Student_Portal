@@ -43,8 +43,6 @@ public class fragment_Grades extends Fragment {
         currentStudentNumber = sharedPreferences.getString("studentNumber", null);
 
         if (currentStudentNumber != null) {
-            studentNumber.setText(currentStudentNumber); // Set the student number in the TextView
-            loadUserName(currentStudentNumber); // Load the name from database
             loadGrades(currentStudentNumber);  // Load the grades from database
         } else {
             Toast.makeText(getActivity(), "Student number not found", Toast.LENGTH_SHORT).show();
@@ -54,44 +52,7 @@ public class fragment_Grades extends Fragment {
     }
 
     // Load the user's name from the database
-    private void loadUserName(String studentNumber) {
-        new Thread(() -> {
-            try {
-                // Get the connection using ConnectionClass
-                ConnectionClass connectionClass = new ConnectionClass();
-                Connection connection = connectionClass.CONN();
 
-                if (connection != null) {
-                    // Query the enrollstudentinformation table
-                    String query = "SELECT firstName, lastName FROM enrollstudentinformation WHERE studentNumber = ?";
-                    PreparedStatement statement = connection.prepareStatement(query);
-                    statement.setString(1, studentNumber);
-                    ResultSet resultSet = statement.executeQuery();
-
-                    if (resultSet.next()) {
-                        String firstName = resultSet.getString("firstName");
-                        String lastName = resultSet.getString("lastName");
-
-                        // Update the name on the main thread (UI thread)
-                        getActivity().runOnUiThread(() -> etName.setText(firstName + " " + lastName));
-                    } else {
-                        getActivity().runOnUiThread(() ->
-                                Toast.makeText(getActivity(), "User data not found", Toast.LENGTH_SHORT).show());
-                    }
-
-                    resultSet.close();
-                    statement.close();
-                    connection.close();
-                } else {
-                    getActivity().runOnUiThread(() ->
-                            Toast.makeText(getActivity(), "Database connection failed", Toast.LENGTH_SHORT).show());
-                }
-            } catch (SQLException e) {
-                getActivity().runOnUiThread(() ->
-                        Toast.makeText(getActivity(), "Database Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-            }
-        }).start();
-    }
 
     // Load the grades for the current student
     private void loadGrades(String studentNumber) {

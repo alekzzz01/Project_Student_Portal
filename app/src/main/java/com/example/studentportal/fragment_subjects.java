@@ -50,8 +50,6 @@ public class fragment_subjects extends Fragment {
         currentStudentNumber = sharedPreferences.getString("studentNumber", null);
 
         if (currentStudentNumber != null) {
-            studentnumber.setText(currentStudentNumber);
-            loadUserName(currentStudentNumber);
         } else {
             Toast.makeText(getActivity(), "Student number not found", Toast.LENGTH_SHORT).show();
         }
@@ -95,43 +93,7 @@ public class fragment_subjects extends Fragment {
         });
     }
 
-    private void loadUserName(String currentStudentNumber) {
-        new Thread(() -> {
-            try {
-                ConnectionClass connectionClass = new ConnectionClass();
-                Connection connection = connectionClass.CONN();
 
-                String query = "SELECT firstName, lastName FROM enrollstudentinformation WHERE studentNumber = ?";
-                Log.e("SQL Query", "Executing query: " + query + " with studentNumber = " + currentStudentNumber);
-                PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, currentStudentNumber);
-                ResultSet resultSet = statement.executeQuery();
-
-                if (resultSet.next()) {
-                    String firstName = resultSet.getString("firstName");
-                    String lastName = resultSet.getString("lastName");
-                    Log.e("UserData", "User found: " + firstName + " " + lastName);
-
-                    getActivity().runOnUiThread(() -> nameheader.setText(firstName + " " + lastName));
-                } else {
-                    getActivity().runOnUiThread(() -> {
-                        Log.e("UserData", "User not found");
-                        Toast.makeText(getActivity(), "User data not found", Toast.LENGTH_SHORT).show();
-                    });
-                }
-
-                resultSet.close();
-                statement.close();
-                connection.close();
-
-            } catch (SQLException e) {
-                getActivity().runOnUiThread(() -> {
-                    Log.e("Database Error", "Error: " + e.getMessage());
-                    Toast.makeText(getActivity(), "Database Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-            }
-        }).start();
-    }
 
     private void loadSubjects(String year, String term) {
         // Clear previous rows (except the header row)
