@@ -137,11 +137,30 @@
 
     <action
         android:id="@+id/action_dashboard_to_feedback"
-        app:destination="@+id/nav_StudentHandbook" />
+        app:destination="@+id/nav_FeedbackForm" />
 
 
     <action
         android:id="@+id/action_feedback_to_dashboard"
+        app:destination="@+id/nav_home" />
+
+
+    <!---->
+    <fragment
+
+        android:id="@+id/nav_Map"
+        android:name="com.example.studentportal.fragment_Map"
+        android:label="Forms"
+        tools:layout="@layout/fragment__map"/>
+
+
+    <action
+        android:id="@+id/action_dashboard_to_map"
+        app:destination="@+id/nav_Map" />
+
+
+    <action
+        android:id="@+id/action_map_to_dashboard"
         app:destination="@+id/nav_home" />
 
 
