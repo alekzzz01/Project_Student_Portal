@@ -41,18 +41,84 @@
             android:layout_height="match_parent"
             android:layout_marginTop="24dp"
             android:background="@drawable/form_bg"
->
+            >
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-
-
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="24dp"
 
                 >
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:hint="Select your Program"
+                    app:boxStrokeColor="#027202"
+                    app:hintTextColor="#027202"
+
+                    >
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/role2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:textSize="12sp"
+                        app:layout_constraintTop_toBottomOf="@+id/studentNumberTitle"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                        />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout2"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Select Department"
+                    app:boxStrokeColor="#027202"
+                    app:hintTextColor="#027202"
+
+                    >
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/role"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:textSize="12sp"
+                        app:layout_constraintTop_toBottomOf="@+id/studentNumberTitle"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                        />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/materialDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    app:dividerColor="#027202"
+                    app:layout_constraintTop_toBottomOf="@+id/et_Name"
+                    tools:layout_editor_absoluteX="24dp" />
+
+
+
 
                 <TextView
 
@@ -69,11 +135,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="8dp"
+
                     android:autofillHints=""
                     android:textSize="16sp"
 
 
-                    />
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
 
