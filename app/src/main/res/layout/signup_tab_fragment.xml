@@ -133,7 +133,7 @@
                 android:layout_marginTop="24dp"
                 android:backgroundTint="#FFCC00"
                 android:fontFamily="@font/poppinssemibold"
-                android:text="Signup"
+                android:text="Register"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />

@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         tabLayout.addTab(tabLayout.newTab().setText("Login"));
-        tabLayout.addTab(tabLayout.newTab().setText("Sign up"));
+        tabLayout.addTab(tabLayout.newTab().setText("Register"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
