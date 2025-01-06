@@ -51,7 +51,8 @@ public class fragment_FeedbackForm extends Fragment {
                 "Bachelor of Elementary Education (BEEd)",
                 "Bachelor of Secondary Education (BSEd)",
                 "Bachelor of Science in Hospitality Management (BSHM)",
-                "Bachelor of Science in Business Administration (BSBA)"
+                "Bachelor of Science in Business Administration (BSBA)",
+                "Visitor"
         };
 
         ArrayAdapter<String> programAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, programs);
@@ -61,7 +62,8 @@ public class fragment_FeedbackForm extends Fragment {
                 "Fisheries and Aquatic Sciences Department",
                 "Information Technology Department",
                 "Teacher Education Department",
-                "Management Department"
+                "Management Department",
+                "Visitor"
         };
 
         ArrayAdapter<String> departmentAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, departments);

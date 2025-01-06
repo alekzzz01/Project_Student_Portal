@@ -53,8 +53,8 @@ public class fragment_Grades extends Fragment {
     private void setupDropdown() {
         // Define semester options
         String[] semesterOptions = {
-                "FIRST SEMESTER",
-                "SECOND SEMESTER"
+                "4TH YEAR - 1ST SEMESTER",
+                "4TH YEAR - 2ND SEMESTER"
         };
 
         // Set up ArrayAdapter for the dropdown
@@ -66,7 +66,7 @@ public class fragment_Grades extends Fragment {
         semesterDropdown.setAdapter(adapter);
 
         // Set default selection
-        String defaultSelection = "FIRST SEMESTER"; // Default semester
+        String defaultSelection = "4TH YEAR - 1ST SEMESTER"; // Default semester
         semesterDropdown.setText(defaultSelection, false);
 
         // Load grades for the default semester
@@ -75,8 +75,7 @@ public class fragment_Grades extends Fragment {
         // Handle dropdown selection changes
         semesterDropdown.setOnItemClickListener((parent, view, position, id) -> {
             String selectedSemester = semesterOptions[position];
-            String semester = selectedSemester.equals("FIRST SEMESTER") ? "FIRST" : "SECOND";
-
+            String semester = selectedSemester.contains("1ST") ? "FIRST" : "SECOND";
             loadGrades(currentStudentNumber, "2023-2024", semester);
         });
     }
