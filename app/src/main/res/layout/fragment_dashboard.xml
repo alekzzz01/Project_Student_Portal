@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsbold"
-                android:text="Student Name"
+                android:text=""
                 android:textColor="#0D1B34"
                 android:textSize="24sp"
                 android:layout_marginStart="16dp"
@@ -285,12 +285,12 @@
 
 
                         <TextView
-
+                            android:id="@+id/newGrade"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:fontFamily="@font/poppinssemibold"
-                            android:text="Click to View"
+                            android:text=""
                             android:textAlignment="viewStart"
                             android:textColor="#0D1B34"
                             android:layout_marginTop="12dp"
@@ -342,7 +342,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:fontFamily="@font/poppinssemibold"
-                            android:text="Click to View"
+                            android:text="To be Announced"
                             android:textAlignment="viewStart"
                             android:textColor="#0D1B34"
                             android:layout_marginTop="12dp"

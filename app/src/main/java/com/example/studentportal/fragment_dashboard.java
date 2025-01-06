@@ -18,7 +18,7 @@ import java.sql.SQLException;
 
 public class fragment_dashboard extends Fragment {
 
-    TextView name_header;
+    TextView name_header, newgrade;
     private String currentStudentNumber; // Store current student number
     private String userRole; // Store the user's role
 
@@ -29,6 +29,7 @@ public class fragment_dashboard extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         name_header = rootView.findViewById(R.id.et_Name);
+        newgrade = rootView.findViewById(R.id.newGrade);
 
         // Retrieve the user role and student number from SharedPreferences
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
@@ -43,7 +44,7 @@ public class fragment_dashboard extends Fragment {
         if (userRole.equalsIgnoreCase("Visitor")) {
             name_header.setText("VISITOR");
         } else if (currentStudentNumber != null) {
-            // Load the student's name from the database if the role is not Visitor
+            // Load the student's name and grade from the database if the role is not Visitor
             loadUserName(currentStudentNumber);
         } else {
             Toast.makeText(getActivity(), "Student number not found", Toast.LENGTH_SHORT).show();
@@ -52,7 +53,7 @@ public class fragment_dashboard extends Fragment {
         return rootView;
     }
 
-    // Method to load the user's name from the database
+    // Method to load the user's name and grade from the database
     private void loadUserName(String studentNumber) {
         new Thread(() -> {
             try {
@@ -61,14 +62,14 @@ public class fragment_dashboard extends Fragment {
                 Connection connection = connectionClass.CONN();
 
                 // Query the enrollstudentinformation table
-                String query = "SELECT firstName, lastName FROM enrollstudentinformation WHERE studentNumber = ?";
-                PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, studentNumber);
-                ResultSet resultSet = statement.executeQuery();
+                String nameQuery = "SELECT firstName, lastName FROM enrollstudentinformation WHERE studentNumber = ?";
+                PreparedStatement nameStatement = connection.prepareStatement(nameQuery);
+                nameStatement.setString(1, studentNumber);
+                ResultSet nameResultSet = nameStatement.executeQuery();
 
-                if (resultSet.next()) {
-                    String firstName = resultSet.getString("firstName");
-                    String lastName = resultSet.getString("lastName");
+                if (nameResultSet.next()) {
+                    String firstName = nameResultSet.getString("firstName");
+                    String lastName = nameResultSet.getString("lastName");
 
                     // Update the name on the main thread (UI thread)
                     getActivity().runOnUiThread(() -> name_header.setText(firstName + " " + lastName));
@@ -77,8 +78,30 @@ public class fragment_dashboard extends Fragment {
                             Toast.makeText(getActivity(), "User data not found", Toast.LENGTH_SHORT).show());
                 }
 
-                resultSet.close();
-                statement.close();
+                nameResultSet.close();
+                nameStatement.close();
+
+                String gradeQuery = "SELECT mygrade, subjectcode FROM enrollgradestbl WHERE studentnumber = ?";
+                PreparedStatement gradeStatement = connection.prepareStatement(gradeQuery);
+                gradeStatement.setString(1, studentNumber);
+                ResultSet gradeResultSet = gradeStatement.executeQuery();
+
+                if (gradeResultSet.next()) {
+                    String subjectCode = gradeResultSet.getString("subjectcode");
+                    String grade = gradeResultSet.getString("mygrade");
+
+                    String displayText = subjectCode + " : " + grade;
+
+                    getActivity().runOnUiThread(() -> newgrade.setText(displayText));
+                } else {
+                    getActivity().runOnUiThread(() ->
+                            newgrade.setText("Grade not found."));
+                }
+
+
+                gradeResultSet.close();
+                gradeStatement.close();
+
                 connection.close();
 
             } catch (SQLException e) {
