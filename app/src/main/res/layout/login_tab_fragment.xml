@@ -31,7 +31,7 @@
             android:autofillHints=""
             android:background="@drawable/curve_bg_white3"
             android:fontFamily="@font/poppinsregular"
-            android:hint="Student Number"
+            android:hint="Student Number / Username"
             android:inputType="text"
             android:textColor="@color/black"
             android:textColorHighlight="#99FF99"

@@ -46,7 +46,7 @@
                     android:autofillHints=""
                     android:background="@drawable/curve_bg_white3"
                     android:fontFamily="@font/poppinsregular"
-                    android:hint="Student Number"
+                    android:hint="Student Number / Username"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHighlight="#99FF99"
@@ -57,7 +57,77 @@
                 </EditText>
 
 
+
             </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxStrokeColor="#000000"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:endIconTint="#027202"
+                app:passwordToggleTint="#027202">
+
+
+                <EditText
+                    android:id="@+id/fname_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:background="@drawable/curve_bg_white3"
+                    android:fontFamily="@font/poppinsregular"
+                    android:hint="Firstname"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="#99FF99"
+                    android:textColorHint="#027202"
+                    android:textColorLink="#027202">
+
+
+                </EditText>
+
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxStrokeColor="#000000"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:endIconTint="#027202"
+                app:passwordToggleTint="#027202">
+
+
+                <EditText
+                    android:id="@+id/lname_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:background="@drawable/curve_bg_white3"
+                    android:fontFamily="@font/poppinsregular"
+                    android:hint="Lastname"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="#99FF99"
+                    android:textColorHint="#027202"
+                    android:textColorLink="#027202">
+
+
+                </EditText>
+
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
 
             <com.google.android.material.textfield.TextInputLayout

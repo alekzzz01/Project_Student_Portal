@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         if (userRole.equalsIgnoreCase("Visitor")) {
             // Hide or disable restricted items
             menu.findItem(R.id.nav_grades).setVisible(false);
-            menu.findItem(R.id.nav_Calendar).setVisible(false);
             menu.findItem(R.id.nav_Schedule).setVisible(false);
             menu.findItem(R.id.nav_Subject).setVisible(false);
             menu.findItem(R.id.nav_Forms).setVisible(false);
