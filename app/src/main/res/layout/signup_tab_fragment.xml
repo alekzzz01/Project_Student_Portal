@@ -46,7 +46,7 @@
                     android:autofillHints=""
                     android:background="@drawable/curve_bg_white3"
                     android:fontFamily="@font/poppinsregular"
-                    android:hint="Student Number / Username"
+                    android:hint="Student Number"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHighlight="#99FF99"
@@ -74,13 +74,13 @@
 
 
                 <EditText
-                    android:id="@+id/fname_et"
+                    android:id="@+id/email_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:autofillHints=""
                     android:background="@drawable/curve_bg_white3"
                     android:fontFamily="@font/poppinsregular"
-                    android:hint="Firstname"
+                    android:hint="Email"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHighlight="#99FF99"
@@ -106,13 +106,13 @@
 
 
                 <EditText
-                    android:id="@+id/lname_et"
+                    android:id="@+id/phone_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:autofillHints=""
                     android:background="@drawable/curve_bg_white3"
                     android:fontFamily="@font/poppinsregular"
-                    android:hint="Lastname"
+                    android:hint="Phone number"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHighlight="#99FF99"
@@ -208,33 +208,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
 
-                android:layout_marginTop="24dp"
-                android:hint="Select User Type"
-                app:boxStrokeColor="#027202"
-                app:hintTextColor="#027202"
-                app:layout_constraintTop_toBottomOf="@+id/login_btn"
-                tools:layout_editor_absoluteX="24dp">
-
-
-                <AutoCompleteTextView
-                    android:id="@+id/role"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="316dp"
-                    android:inputType="none"
-                    android:textSize="12sp"
-                    app:layout_constraintTop_toBottomOf="@+id/studentNumberTitle"
-                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-                    tools:layout_editor_absoluteX="21dp" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
 
 
         </LinearLayout>
