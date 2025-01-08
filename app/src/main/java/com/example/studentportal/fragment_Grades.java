@@ -97,7 +97,7 @@ public class fragment_Grades extends Fragment {
 
                 if (connection != null) {
                     // Query to get grades for the student
-                    String query = "SELECT subjectCode, myGrade FROM enrollgradestbl WHERE studentNumber = ? AND schoolYear = ? AND semester = ?";
+                    String query = "SELECT subjectCode, myGrade, units FROM enrollgradestbl WHERE studentNumber = ? AND schoolYear = ? AND semester = ?";
                     PreparedStatement statement = connection.prepareStatement(query);
                     statement.setString(1, studentNumber);
                     statement.setString(2, schoolYear);
@@ -108,10 +108,13 @@ public class fragment_Grades extends Fragment {
                     while (resultSet.next()) {
                         String subjectCode = resultSet.getString("subjectCode");
                         double myGrade = resultSet.getDouble("myGrade");
+                        double units = resultSet.getDouble("units");
 
                         // Update UI on the main thread
-                        getActivity().runOnUiThread(() -> addRowToTable(subjectCode, myGrade));
+                        getActivity().runOnUiThread(() -> addRowToTable(subjectCode, myGrade, units));
                     }
+
+
 
                     resultSet.close();
                     statement.close();
@@ -128,36 +131,51 @@ public class fragment_Grades extends Fragment {
     }
 
     // Dynamically add rows to the table layout
-    private void addRowToTable(String subjectCode, Double gradeValue) {
+// Dynamically add rows to the table layout
+    private void addRowToTable(String subjectCode, Double gradeValue, Double unitsValue) {
         // Create a new table row
         TableRow row = new TableRow(getContext());
-        // Set layout parameters for the row
-        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
-        row.setLayoutParams(layoutParams);
+        row.setLayoutParams(new TableRow.LayoutParams(
+                TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT
+        ));
 
-        // Create and set text views for subject and grade
+        // Subject TextView
         TextView subjectTextView = new TextView(getContext());
         subjectTextView.setText(subjectCode);
-        subjectTextView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.poppinsmedium)); // Apply PoppinsMedium
+        subjectTextView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.poppinsmedium));
         subjectTextView.setLayoutParams(new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        subjectTextView.setPadding(150, 16, 16, 16);
+        subjectTextView.setPadding(16, 16, 16, 16);
         subjectTextView.setTextColor(getResources().getColor(R.color.black));
-        subjectTextView.setGravity(Gravity.CENTER_VERTICAL | Gravity.START); // Align left
+        subjectTextView.setGravity(Gravity.CENTER); // Center alignment
 
+        // Grade TextView
         TextView gradeTextView = new TextView(getContext());
-        gradeTextView.setText(String.valueOf(gradeValue));
-        gradeTextView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.poppinsmedium)); // Apply PoppinsMedium
+        gradeTextView.setText(String.format("%.2f", gradeValue)); // Ensure grade is formatted to 2 decimal places
+        gradeTextView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.poppinsmedium));
         gradeTextView.setLayoutParams(new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        gradeTextView.setPadding(16, 16, 170, 16);
+        gradeTextView.setPadding(16, 16, 16, 16);
         gradeTextView.setTextColor(getResources().getColor(R.color.black));
-        gradeTextView.setGravity(Gravity.CENTER_VERTICAL | Gravity.END); // Align right
+        gradeTextView.setGravity(Gravity.CENTER); // Center alignment
 
-        // Add views to the row
+        // Units TextView
+        TextView unitsTextView = new TextView(getContext());
+        unitsTextView.setText(String.format("%.2f", unitsValue)); // Ensure units are formatted to 2 decimal places
+        unitsTextView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.poppinsmedium));
+        unitsTextView.setLayoutParams(new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        unitsTextView.setPadding(16, 16, 16, 16);
+        unitsTextView.setTextColor(getResources().getColor(R.color.black));
+        unitsTextView.setGravity(Gravity.CENTER); // Center alignment
+
+        // Add TextViews to the row
         row.addView(subjectTextView);
         row.addView(gradeTextView);
+        row.addView(unitsTextView);
 
         // Add row to the table layout
         tableLayout.addView(row);
     }
+
+
+
 }
