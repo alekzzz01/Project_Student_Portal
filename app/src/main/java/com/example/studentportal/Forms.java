@@ -124,11 +124,12 @@ public class Forms extends Fragment {
 
 
     private void downloadForm(String formUrl) {
+        String fileName = formUrl.substring(formUrl.lastIndexOf('/') + 1, formUrl.indexOf('?')); // Extract filename from URL
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(formUrl));
         request.setTitle("Downloading Form");
         request.setDescription("Downloading form from Firebase Storage");
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "form.pdf"); // Change the file name as needed
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName); // Use extracted filename
 
         DownloadManager downloadManager = (DownloadManager) requireActivity().getSystemService(Context.DOWNLOAD_SERVICE);
         if (downloadManager != null) {
@@ -138,6 +139,7 @@ public class Forms extends Fragment {
             Toast.makeText(getContext(), "Download manager not available", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     // Static inner class for form data
     public static class Form {
