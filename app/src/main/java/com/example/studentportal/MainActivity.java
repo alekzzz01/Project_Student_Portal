@@ -52,11 +52,23 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         String userRole = sharedPreferences.getString("role", "Visitor"); // Default role is Visitor
 
+        // Set default fragment based on role
+        setDefaultFragment(userRole);
+
         // Restrict menu items based on role
         restrictMenuForVisitor(userRole);
 
         // Handle Navigation Item Clicks
         setupNavigationListener();
+    }
+
+    /**
+     * Navigates to the default fragment based on user role.
+     */
+    private void setDefaultFragment(String userRole) {
+        if (userRole.equalsIgnoreCase("Visitor")) {
+            navController.navigate(R.id.action_dashboard_to_map); // Navigate to Map
+        }
     }
 
     /**
@@ -71,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.nav_Schedule).setVisible(false);
             menu.findItem(R.id.nav_Subject).setVisible(false);
             menu.findItem(R.id.nav_Forms).setVisible(false);
+            menu.findItem(R.id.nav_User).setVisible(false);
+            menu.findItem(R.id.nav_home).setVisible(false);
         }
     }
 
