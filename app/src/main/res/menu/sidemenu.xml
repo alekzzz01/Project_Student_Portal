@@ -12,13 +12,13 @@
                 <group>
                     <item
                         android:id="@+id/nav_home"
-                        android:icon="@drawable/menu_home"
+                        android:icon="@drawable/icons8_home"
                         android:title="Home" />
 
 
                     <item
                         android:id="@+id/nav_grades"
-                        android:icon="@drawable/menu_grade"
+                        android:icon="@drawable/icons8_grades"
                         android:title="Grades" />
 
                     <item
@@ -29,12 +29,12 @@
 
                     <item
                         android:id="@+id/nav_Subject"
-                        android:icon="@drawable/menu_subjects"
+                        android:icon="@drawable/icons8_subjects"
                         android:title="Subjects" />
 
                     <item
                         android:id="@+id/nav_Map"
-                        android:icon="@drawable/menu_map"
+                        android:icon="@drawable/icons8_map"
                         android:title="Map" />
 
 
@@ -49,7 +49,7 @@
 
                     <item
                         android:id="@+id/nav_StudentHandbook"
-                        android:icon="@drawable/menu_handbook"
+                        android:icon="@drawable/icons8_handbook"
                         android:title="Student Handbook" />
 
                     <item
@@ -59,7 +59,7 @@
 
                     <item
                         android:id="@+id/nav_FeedbackForm"
-                        android:icon="@drawable/menu_feedback"
+                        android:icon="@drawable/icons8_feedback"
                         android:title="Feedback" />
 
 
@@ -69,10 +69,29 @@
 
         </item>
 
-        <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/menu_logout"
-            android:title="Logout" />
+        <item android:title="Settings">
+            <menu>
+                <group>
+
+                    <item
+                        android:id="@+id/nav_User"
+                        android:icon="@drawable/icons8_user"
+                        android:title="User Management" />
+
+
+                    <item
+                        android:id="@+id/nav_logout"
+                        android:icon="@drawable/menu_logout"
+                        android:title="Logout" />
+
+
+
+
+                </group>
+            </menu>
+
+        </item>
+
 
 
     </group>

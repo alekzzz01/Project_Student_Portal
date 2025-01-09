@@ -165,6 +165,28 @@
 
 
 
+    <!---->
+    <fragment
+
+        android:id="@+id/nav_User"
+        android:name="com.example.studentportal.fragment_Usermanagement"
+        android:label="Forms"
+        tools:layout="@layout/fragment__usermanagement"/>
+
+
+    <action
+        android:id="@+id/action_dashboard_to_user"
+        app:destination="@+id/nav_User" />
+
+
+    <action
+        android:id="@+id/action_user_to_dashboard"
+        app:destination="@+id/nav_home" />
+
+
+
+
+
 
 
 
