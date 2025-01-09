@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,7 @@ public class LoginTabFragment extends Fragment {
 
     EditText studentemail, password;
     Button login;
+    TextView forgotpass;
     ConnectionClass connectionClass;
     AutoCompleteTextView role;
 
@@ -37,6 +39,7 @@ public class LoginTabFragment extends Fragment {
         password = root.findViewById(R.id.password_et);
         login = root.findViewById(R.id.login_btn);
         role = root.findViewById(R.id.role);
+        forgotpass = root.findViewById(R.id.forgotpassword);
 
         String[] roles = getResources().getStringArray(R.array.roles_array);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, roles);
@@ -45,6 +48,13 @@ public class LoginTabFragment extends Fragment {
         role.setText(roles[0], false);
 
         connectionClass = new ConnectionClass();
+
+        forgotpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Please proceed to MIS for assistance", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

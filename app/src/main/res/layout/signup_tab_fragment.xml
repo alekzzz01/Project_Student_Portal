@@ -62,69 +62,9 @@
 
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:boxStrokeColor="#000000"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                app:endIconTint="#027202"
-                app:passwordToggleTint="#027202">
-
-
-                <EditText
-                    android:id="@+id/email_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:background="@drawable/curve_bg_white3"
-                    android:fontFamily="@font/poppinsregular"
-                    android:hint="Email"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textColorHighlight="#99FF99"
-                    android:textColorHint="#027202"
-                    android:textColorLink="#027202">
-
-
-                </EditText>
 
 
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:boxStrokeColor="#000000"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                app:endIconTint="#027202"
-                app:passwordToggleTint="#027202">
-
-
-                <EditText
-                    android:id="@+id/phone_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:background="@drawable/curve_bg_white3"
-                    android:fontFamily="@font/poppinsregular"
-                    android:hint="Phone number"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textColorHighlight="#99FF99"
-                    android:textColorHint="#027202"
-                    android:textColorLink="#027202">
-
-
-                </EditText>
-
-
-
-            </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -138,6 +78,7 @@
                 app:boxStrokeColor="#000000"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
+                app:hintTextColor="#027202"
                 app:endIconTint="#027202"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="#027202">
@@ -169,6 +110,7 @@
                 android:layout_marginTop="16dp"
                 app:boxStrokeColor="#000000"
                 app:boxStrokeWidth="0dp"
+                app:hintTextColor="#027202"
                 app:boxStrokeWidthFocused="0dp"
                 app:endIconTint="#027202"
                 app:passwordToggleEnabled="true"

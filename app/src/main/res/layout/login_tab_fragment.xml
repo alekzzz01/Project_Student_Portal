@@ -31,7 +31,7 @@
             android:autofillHints=""
             android:background="@drawable/curve_bg_white3"
             android:fontFamily="@font/poppinsregular"
-            android:hint="Student Number / Username"
+            android:hint="Student Number"
             android:inputType="text"
             android:textColor="@color/black"
             android:textColorHighlight="#99FF99"
@@ -82,7 +82,7 @@
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/forgotpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -109,7 +109,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/forgotpassword" />
 
 
     <com.google.android.material.textfield.TextInputLayout
