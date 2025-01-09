@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     navController.navigate(R.id.action_dashboard_to_form);
                 } else if (itemId == R.id.nav_Map) {
                     navController.navigate(R.id.action_dashboard_to_map);
-                } else if (itemId == R.id.nav_Map) {
+                } else if (itemId == R.id.nav_User) {
                     navController.navigate(R.id.action_dashboard_to_user);
                 } else if (itemId == R.id.nav_logout) {
                     showLogoutConfirmationDialog(); // Handle logout
