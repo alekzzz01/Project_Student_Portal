@@ -63,10 +63,10 @@ public class fragment_subjects extends Fragment {
     private void setupDropdown() {
         // Updated options with "First Sem" and "Second Sem"
         String[] schoolYearTermOptions = {
-                "2023 - First Sem",
-                "2023 - Second Sem",
-                "2024 - First Sem",
-                "2024 - Second Sem"
+                "2023 - 2024 First Semester",
+                "2023 - 2024 Second Semester",
+                "2024 - 2025 First Semester",
+                "2024 - 2025 Second Semester"
         };
 
         // ArrayAdapter to populate the dropdown
@@ -79,7 +79,7 @@ public class fragment_subjects extends Fragment {
         dropdown.setAdapter(adapter);
 
         // Set default selection
-        String defaultSelection = "2023 - First Sem"; // Set your desired default option here
+        String defaultSelection = "2023 - 2024 First Semester"; // Set your desired default option here
         dropdown.setText(defaultSelection, false); // Set text without triggering listeners
 
         // Extract default year and term from the selected default option
