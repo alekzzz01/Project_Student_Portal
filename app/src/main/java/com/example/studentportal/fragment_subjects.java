@@ -173,7 +173,7 @@ public class fragment_subjects extends Fragment {
         subjectCodeView.setPadding(20, 20, 20, 20); // Add padding for better readability
         subjectCodeView.setGravity(Gravity.CENTER);  // Center text horizontally
         subjectCodeView.setTextSize(16);  // Set text size for readability
-        subjectCodeView.setBackgroundColor(getResources().getColor(android.R.color.white));  // Set background color to white
+        subjectCodeView.setTextColor(getResources().getColor(R.color.black));
         subjectCodeView.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f));  // Equal space distribution
 
         // Create and set the Subject Title TextView
@@ -181,21 +181,31 @@ public class fragment_subjects extends Fragment {
         subjectTitleView.setText(subjectTitle);
         subjectTitleView.setPadding(20, 20, 20, 20); // Add padding for better readability
         subjectTitleView.setGravity(Gravity.CENTER);  // Center text horizontally
+        subjectTitleView.setTextColor(getResources().getColor(R.color.black));
         subjectTitleView.setTextSize(16);  // Set text size for readability
-        subjectTitleView.setBackgroundColor(getResources().getColor(android.R.color.white));  // Set background color to white
         subjectTitleView.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2f));  // Subject title column gets more space
 
         // Add both TextViews to the row
         row.addView(subjectCodeView);
         row.addView(subjectTitleView);
 
-        // Add the row to the TableLayout
+        // Create a separator view
+        View separator = new View(getActivity());
+        separator.setLayoutParams(new TableLayout.LayoutParams(
+                TableLayout.LayoutParams.MATCH_PARENT, 2 // Separator height
+        ));
+        separator.setBackgroundColor(getResources().getColor(R.color.gray)); // Set separator color
+
+        // Add the row and the separator to the TableLayout
         getActivity().runOnUiThread(() -> {
             tableLayout.addView(row);
+            tableLayout.addView(separator); // Add the separator below the row
+
             Log.e("Table", "Row added: " + subjectCode + " - " + subjectTitle);
 
-            // Log the number of rows after adding
-            Log.e("Table", "Total rows: " + tableLayout.getChildCount());
+            // Log the number of rows (excluding separators)
+            Log.e("Table", "Total rows: " + (tableLayout.getChildCount() / 2));
         });
     }
+
 }

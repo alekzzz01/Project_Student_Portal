@@ -68,7 +68,7 @@ public class Forms extends Fragment {
 
 
 
-        // Handle row click events
+
         // Handle row click events
         dtvTable.setOnClickListener(new OnWebViewComponentClickListener() {
             @Override
