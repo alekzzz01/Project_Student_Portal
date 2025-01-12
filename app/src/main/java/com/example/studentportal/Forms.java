@@ -43,9 +43,10 @@ public class Forms extends Fragment {
 
         // Define the columns for the table
         ArrayList<Column> columns = new ArrayList<>();
-        columns.add(new Column("formCode", "Form Code"));
+        columns.add(new Column("formCode", "Form Code")); // Add a custom header for the action column
         columns.add(new Column("formName", "Form Name: "));
         columns.add(new Column("department", "Department: "));
+
 
         // Populate the table with some data
         ArrayList<Form> listData = getFormData();
@@ -59,9 +60,11 @@ public class Forms extends Fragment {
                 listData,
                 true, // Show action button
                 orderBy, // Sort by first column in descending order
-                50, // Pagination length
+                10, // Pagination length
                 true // Disable searching
         );
+
+
 
 
 
