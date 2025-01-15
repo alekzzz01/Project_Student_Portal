@@ -30,15 +30,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
 
-
-
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="8dp">
-
-
 
 
                 <LinearLayout
@@ -55,8 +52,8 @@
                         android:fontFamily="@font/poppinsregular"
                         android:text="Class Schedules"
                         android:textColor="#0D1B34"
-                        android:textStyle="bold"
                         android:textSize="25sp"
+                        android:textStyle="bold"
 
                         />
 
@@ -275,8 +272,8 @@
                         android:fontFamily="@font/poppinsregular"
                         android:text="Major Examination Schedules"
                         android:textColor="#0D1B34"
-                        android:textStyle="bold"
                         android:textSize="25sp"
+                        android:textStyle="bold"
 
                         />
 
@@ -483,9 +480,6 @@
 
 
                     </androidx.cardview.widget.CardView>
-
-
-
 
 
                 </LinearLayout>
