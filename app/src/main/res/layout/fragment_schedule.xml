@@ -288,7 +288,7 @@
                         />
 
                     <com.google.android.material.divider.MaterialDivider
-                        android:id="@+id/materialDivider1"
+                        android:id="@+id/materialDivider2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"

@@ -38,38 +38,34 @@ public class LoginTabFragment extends Fragment {
 
         connectionClass = new ConnectionClass();
 
-        forgotpass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Please proceed to MIS for assistance", Toast.LENGTH_SHORT).show();
+        forgotpass.setOnClickListener(v ->
+                Toast.makeText(getContext(), "Please proceed to MIS for assistance", Toast.LENGTH_SHORT).show()
+        );
+
+        login.setOnClickListener(v -> {
+            String emailAddress = studentemail.getText().toString().trim();
+            String pass = password.getText().toString().trim();
+
+            if (emailAddress.isEmpty() || pass.isEmpty()) {
+                studentemail.setBackgroundResource(emailAddress.isEmpty() ? R.drawable.red_border : 0);
+                password.setBackgroundResource(pass.isEmpty() ? R.drawable.red_border : 0);
+                Toast.makeText(getContext(), "Both fields are required", Toast.LENGTH_SHORT).show();
+            } else {
+                new LoginTask("Student").execute(emailAddress, pass);
             }
         });
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String emailAddress = studentemail.getText().toString().trim();
-                String pass = password.getText().toString().trim();
+        visitorButton.setOnClickListener(v -> {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("role", "Visitor");
+            editor.putBoolean("isLoggedIn", true);
+            editor.apply();
 
-                if (emailAddress.isEmpty() || pass.isEmpty()) {
-                    Toast.makeText(getActivity(), "Please fill out all fields", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Assume student role for login
-                    new LoginTask("Student").execute(emailAddress, pass);
-                }
-            }
-        });
-
-        visitorButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Directly redirect to MainActivity when "Login as Guest" is clicked
-                Toast.makeText(getActivity(), "Logged in as Visitor", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                getActivity().finish(); // Finish current activity
-            }
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            getActivity().finish();
         });
 
         return root;
@@ -79,7 +75,6 @@ public class LoginTabFragment extends Fragment {
         String email, password, studentNumber, role;
         String errorMessage = "";
 
-        // Constructor to accept the role
         public LoginTask(String role) {
             this.role = role;
         }
@@ -96,50 +91,38 @@ public class LoginTabFragment extends Fragment {
             }
 
             try {
-                String query;
-                PreparedStatement stmt;
-
-                if (role.equalsIgnoreCase("Visitor")) {
-                    // Visitor logic is no longer needed here
-                    return true; // Allow direct access for visitors
-                } else { // Assuming role is "Student"
-                    query = "SELECT studentnumber FROM enrollpswdstudtbl WHERE studentnumber = ? AND secretdoor = ?";
-                    stmt = conn.prepareStatement(query);
-                    stmt.setString(1, email);
-                    stmt.setString(2, password);
-                }
+                String query = "SELECT studentnumber FROM enrollpswdstudtbl WHERE studentnumber = ? AND secretdoor = ?";
+                PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setString(1, email);
+                stmt.setString(2, password);
 
                 ResultSet rs = stmt.executeQuery();
 
                 if (rs.next()) {
-                    studentNumber = rs.getString("studentnumber"); // Save student number for students
-                    return true; // Login successful
+                    studentNumber = rs.getString("studentnumber");
+                    return true;
                 } else {
                     errorMessage = "Invalid email or password";
-                    return false; // Login failed
+                    return false;
                 }
             } catch (Exception e) {
                 errorMessage = "Error: " + e.getMessage();
-                return false; // Exception occurred
+                return false;
             }
-
         }
 
         @Override
         protected void onPostExecute(Boolean success) {
             if (success) {
-                // Save login session details in SharedPreferences
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("studentNumber", studentNumber);
-                editor.putString("role", role); // Save selected role
+                editor.putString("role", role);
+                editor.putBoolean("isLoggedIn", true);
                 editor.apply();
 
                 Toast.makeText(getActivity(), "Login Successful as " + role, Toast.LENGTH_SHORT).show();
-
-                // Redirect to MainActivity
                 Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 getActivity().finish();
             } else {
