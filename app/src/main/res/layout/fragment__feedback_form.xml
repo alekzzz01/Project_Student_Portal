@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="24dp"
-                    app:dividerColor="#027202"
+                    app:dividerColor="#FFCC00"
                     app:layout_constraintTop_toBottomOf="@+id/et_Name"
                     tools:layout_editor_absoluteX="24dp" />
 
@@ -135,6 +135,52 @@
 
                 <EditText
                     android:id="@+id/fullname_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints=""
+                    android:backgroundTint="#027202"
+                    android:textColorHighlight="#99FF99"
+                    android:textColorHint="#027202"
+                    android:textColorLink="#027202"
+                    android:textSize="16sp"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Agency"
+                    android:textColor="#9296A2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/agency_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints=""
+                    android:backgroundTint="#027202"
+                    android:textColorHighlight="#99FF99"
+                    android:textColorHint="#027202"
+                    android:textColorLink="#027202"
+                    android:textSize="16sp"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Email"
+                    android:textColor="#9296A2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/email_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -171,6 +217,7 @@
 
                     />
 
+
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -194,18 +241,39 @@
 
                     android:textSize="16sp" />
 
+                <com.google.android.material.divider.MaterialDivider
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    app:dividerColor="#FFCC00"
+                    app:layout_constraintTop_toBottomOf="@+id/et_Name"
+                    tools:layout_editor_absoluteX="24dp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppinssemibold"
+                    android:text="Area of Concern"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/poppinsmedium"
-                    android:text="1. How would you rate the politeness and friendliness of the office staff?"
+                    android:text="A. Courtesy"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
-
                 <RadioGroup
-                    android:id="@+id/politeness_rdgrp"
+                    android:id="@+id/courtesy_rdgrp"
+                    android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -248,19 +316,38 @@
 
                 </RadioGroup>
 
+                <com.google.android.material.divider.MaterialDivider
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    app:dividerColor="#FFCC00"
+                    app:layout_constraintTop_toBottomOf="@+id/et_Name"
+                    tools:layout_editor_absoluteX="24dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/poppinsmedium"
-                    android:text="2. How satisfied are you with the quality of service provided by the office?"
+                    android:text="B. Service"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="1. Quality"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
                 <RadioGroup
                     android:id="@+id/quality_rdgrp"
+                    android:layout_marginLeft="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -307,14 +394,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
                     android:fontFamily="@font/poppinsmedium"
-                    android:text="3. How would you rate the timeliness of the services provided by the office?"
+                    android:text="2. Timeliness"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
-
                 <RadioGroup
                     android:id="@+id/timeliness_rdgrp"
+                    android:layout_marginLeft="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -356,6 +444,232 @@
 
 
                 </RadioGroup>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="3. Efficiency"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/efficiency_rdgrp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Highly Satisfied - (5)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Very Satisfied - (4)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moderately Satisfied - (3)    "
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rarely Satisfied - (2)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not Satisfied - (1)"
+
+                        />
+
+
+                </RadioGroup>
+
+
+                <com.google.android.material.divider.MaterialDivider
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    app:dividerColor="#FFCC00"
+                    app:layout_constraintTop_toBottomOf="@+id/et_Name"
+                    tools:layout_editor_absoluteX="24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="C. Physical condition of office/work"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="1. Cleanliness"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/cleanliness_rdgrp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Highly Satisfied - (5)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Very Satisfied - (4)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moderately Satisfied - (3)    "
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rarely Satisfied - (2)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not Satisfied - (1)"
+
+                        />
+
+
+                </RadioGroup>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="2. Comfort"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/comfort_rdgrp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Highly Satisfied - (5)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Very Satisfied - (4)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moderately Satisfied - (3)    "
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rarely Satisfied - (2)"
+
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not Satisfied - (1)"
+
+                        />
+
+
+                </RadioGroup>
+
+
+                <com.google.android.material.divider.MaterialDivider
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    app:dividerColor="#FFCC00"
+                    app:layout_constraintTop_toBottomOf="@+id/et_Name"
+                    tools:layout_editor_absoluteX="24dp" />
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Comments/Suggestions"
+                    android:textColor="#9296A2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/comment_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints=""
+                    android:textSize="16sp"
+                    android:backgroundTint="#027202"
+                    android:textColorHighlight="#99FF99"
+                    android:textColorHint="#027202"
+                    android:textColorLink="#027202"
+
+                    />
+
+
+
 
 
                 <Button
