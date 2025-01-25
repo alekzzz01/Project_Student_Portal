@@ -89,15 +89,74 @@ public class fragment_FeedbackForm extends Fragment {
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         String userRole = sharedPreferences.getString("role", "Visitor"); // Default role is Visitor
 
+        boolean hasError = false;
+
         // Validate input
-        if (fullName.isEmpty() || purposeOfVisit.isEmpty() || attendingStaff.isEmpty()
-                || selectedProgram.isEmpty() || selectedDepartment.isEmpty()) {
-            Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
-            return;
+        if (fullName.isEmpty()) {
+            etFullName.setBackgroundResource(R.drawable.red_border);
+            Toast.makeText(requireContext(), "Full Name is required", Toast.LENGTH_SHORT).show();
+            hasError = true;
+        } else {
+            etFullName.setBackgroundResource(0); // Reset background
         }
 
-        if (politenessRating == -1 || qualityRating == -1 || timelinessRating == -1) {
-            Toast.makeText(requireContext(), "Please rate all aspects", Toast.LENGTH_SHORT).show();
+        if (purposeOfVisit.isEmpty()) {
+            etPurposeOfVisit.setBackgroundResource(R.drawable.red_border);
+            Toast.makeText(requireContext(), "Purpose of Visit is required", Toast.LENGTH_SHORT).show();
+            hasError = true;
+        } else {
+            etPurposeOfVisit.setBackgroundResource(0); // Reset background
+        }
+
+        if (attendingStaff.isEmpty()) {
+            etAttendingStaff.setBackgroundResource(R.drawable.red_border);
+            Toast.makeText(requireContext(), "Attending Staff is required", Toast.LENGTH_SHORT).show();
+            hasError = true;
+        } else {
+            etAttendingStaff.setBackgroundResource(0); // Reset background
+        }
+
+        if (selectedProgram.isEmpty()) {
+            dropdownProgram.setBackgroundResource(R.drawable.red_border);
+            Toast.makeText(requireContext(), "Program is required", Toast.LENGTH_SHORT).show();
+            hasError = true;
+        } else {
+            dropdownProgram.setBackgroundResource(0); // Reset background
+        }
+
+        if (selectedDepartment.isEmpty()) {
+            dropdownDepartment.setBackgroundResource(R.drawable.red_border);
+            Toast.makeText(requireContext(), "Department is required", Toast.LENGTH_SHORT).show();
+            hasError = true;
+        } else {
+            dropdownDepartment.setBackgroundResource(0); // Reset background
+        }
+
+        if (politenessRating == -1) {
+            rgPoliteness.setBackgroundResource(R.drawable.red_border);
+            Toast.makeText(requireContext(), "Please rate Politeness", Toast.LENGTH_SHORT).show();
+            hasError = true;
+        } else {
+            rgPoliteness.setBackgroundResource(0); // Reset background
+        }
+
+        if (qualityRating == -1) {
+            rgQuality.setBackgroundResource(R.drawable.red_border);
+            Toast.makeText(requireContext(), "Please rate Quality", Toast.LENGTH_SHORT).show();
+            hasError = true;
+        } else {
+            rgQuality.setBackgroundResource(0); // Reset background
+        }
+
+        if (timelinessRating == -1) {
+            rgTimeliness.setBackgroundResource(R.drawable.red_border);
+            Toast.makeText(requireContext(), "Please rate Timeliness", Toast.LENGTH_SHORT).show();
+            hasError = true;
+        } else {
+            rgTimeliness.setBackgroundResource(0); // Reset background
+        }
+
+        if (hasError) {
             return;
         }
 
@@ -108,7 +167,7 @@ public class fragment_FeedbackForm extends Fragment {
                     String query = "INSERT INTO enrollfeedbacktbl " +
                             "(department, program, full_name, purpose_of_visit, attending_staff, " +
                             "staff_politeness_rating, service_quality_rating, timeliness_rating, role) " +
-                            "VALUES (?,?,?, ?, ?, ?, ?, ?, ?)";
+                            "VALUES (?,?,?,?,?,?,?,?,?)";
 
                     PreparedStatement statement = connection.prepareStatement(query);
                     statement.setString(1, selectedDepartment);

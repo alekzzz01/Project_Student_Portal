@@ -46,11 +46,48 @@ public class SignUpTabFragment extends Fragment {
                 String pass = password.getText().toString().trim();
                 String rePass = retypePassword.getText().toString().trim();
 
-                if (pass.isEmpty() || rePass.isEmpty() || studentNum.isEmpty()) {
-                    Toast.makeText(getActivity(), "Please fill out all the fields", Toast.LENGTH_SHORT).show();
-                } else if (!pass.equals(rePass)) {
-                    Toast.makeText(getActivity(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                boolean hasError = false;
+
+                if (studentNum.isEmpty() && pass.isEmpty()) {
+                    studentnumber.setBackgroundResource(R.drawable.red_border);
+                    password.setBackgroundResource(R.drawable.red_border);
+                    Toast.makeText(getActivity(), "Student Number and Password is required", Toast.LENGTH_SHORT).show();
+                    hasError = true;
                 } else {
+                    if (studentNum.isEmpty()) {
+                        studentnumber.setBackgroundResource(R.drawable.red_border);
+                        Toast.makeText(getActivity(), "Student Number is required", Toast.LENGTH_SHORT).show();
+                        hasError = true;
+                    } else {
+                        studentnumber.setBackgroundResource(0); // Reset background
+                    }
+
+                    if (pass.isEmpty()) {
+                        password.setBackgroundResource(R.drawable.red_border);
+                        Toast.makeText(getActivity(), "Password is required", Toast.LENGTH_SHORT).show();
+                        hasError = true;
+                    } else {
+                        password.setBackgroundResource(0); // Reset background
+                    }
+                }
+
+                if (rePass.isEmpty()) {
+                    retypePassword.setBackgroundResource(R.drawable.red_border);
+                    Toast.makeText(getActivity(), "Retype Password is required", Toast.LENGTH_SHORT).show();
+                    hasError = true;
+                } else {
+                    retypePassword.setBackgroundResource(0); // Reset background
+                }
+
+                if (!pass.equals(rePass)) {
+                    retypePassword.setBackgroundResource(R.drawable.red_border);
+                    Toast.makeText(getActivity(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    hasError = true;
+                } else if (!hasError) {
+                    retypePassword.setBackgroundResource(0); // Reset background
+                }
+
+                if (!hasError) {
                     verifyAndRegisterStudent(studentNum, pass);
                 }
             }

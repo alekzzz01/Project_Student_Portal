@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+
+        // Check if the user is logged in
+        if (!isLoggedIn()) {
+            // Redirect to LoginActivity if not logged in
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_main);
 
         // Initialize components
@@ -49,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Retrieve the role from SharedPreferences
-        sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         String userRole = sharedPreferences.getString("role", "Visitor"); // Default role is Visitor
 
         // Set default fragment based on role
@@ -60,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Handle Navigation Item Clicks
         setupNavigationListener();
+    }
+
+    private boolean isLoggedIn() {
+        return sharedPreferences.getBoolean("isLoggedIn", false);
     }
 
     /**
@@ -157,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
 
         // Redirect to LoginActivity
-        FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();

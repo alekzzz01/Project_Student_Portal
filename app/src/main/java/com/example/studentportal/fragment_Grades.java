@@ -174,6 +174,19 @@ public class fragment_Grades extends Fragment {
 
         // Add row to the table layout
         tableLayout.addView(row);
+
+        // Add a separator view
+        View separator = new View(getContext());
+        TableRow.LayoutParams separatorLayoutParams = new TableRow.LayoutParams(
+                TableRow.LayoutParams.MATCH_PARENT,
+                2 // Height of the separator
+        );
+        separatorLayoutParams.setMargins(0, 0, 0, 16); // Optional: add some margin
+        separator.setLayoutParams(separatorLayoutParams);
+        separator.setBackgroundColor(getResources().getColor(R.color.gray)); // Set the color of the separator
+
+        // Add separator to the table layout
+        tableLayout.addView(separator);
     }
 
 

@@ -56,17 +56,45 @@ public class fragment_Usermanagement extends Fragment {
 
         // Handle password update button click
         changebtn.setOnClickListener(v -> {
-            String oldPassword = oldpass.getText().toString();
-            String newPassword = newpass.getText().toString();
-            String retypePassword = retypepass.getText().toString();
+            String oldPassword = oldpass.getText().toString().trim();
+            String newPassword = newpass.getText().toString().trim();
+            String retypePassword = retypepass.getText().toString().trim();
 
-            // Validate passwords
-            if (newPassword.isEmpty() || retypePassword.isEmpty() || oldPassword.isEmpty()) {
-                Toast.makeText(getActivity(), "All fields are required", Toast.LENGTH_SHORT).show();
-            } else if (!newPassword.equals(retypePassword)) {
-                Toast.makeText(getActivity(), "New passwords do not match", Toast.LENGTH_SHORT).show();
+            boolean hasError = false;
+
+            if (oldPassword.isEmpty()) {
+                oldpass.setBackgroundResource(R.drawable.red_border);
+                Toast.makeText(getActivity(), "Old Password is required", Toast.LENGTH_SHORT).show();
+                hasError = true;
             } else {
-                // Update the password
+                oldpass.setBackgroundResource(0); // Reset background
+            }
+
+            if (newPassword.isEmpty()) {
+                newpass.setBackgroundResource(R.drawable.red_border);
+                Toast.makeText(getActivity(), "New Password is required", Toast.LENGTH_SHORT).show();
+                hasError = true;
+            } else {
+                newpass.setBackgroundResource(0); // Reset background
+            }
+
+            if (retypePassword.isEmpty()) {
+                retypepass.setBackgroundResource(R.drawable.red_border);
+                Toast.makeText(getActivity(), "Retype Password is required", Toast.LENGTH_SHORT).show();
+                hasError = true;
+            } else {
+                retypepass.setBackgroundResource(0); // Reset background
+            }
+
+            if (!newPassword.equals(retypePassword)) {
+                retypepass.setBackgroundResource(R.drawable.red_border);
+                Toast.makeText(getActivity(), "New passwords do not match", Toast.LENGTH_SHORT).show();
+                hasError = true;
+            } else if (!hasError) {
+                retypepass.setBackgroundResource(0); // Reset background
+            }
+
+            if (!hasError) {
                 new UpdatePasswordTask().execute(oldPassword, newPassword);
             }
         });
