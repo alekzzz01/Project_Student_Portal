@@ -29,7 +29,7 @@ public class fragment_dashboard extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         name_header = rootView.findViewById(R.id.et_Name);
-        newgrade = rootView.findViewById(R.id.newGrade);
+
 
         // Retrieve the user role and student number from SharedPreferences
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
