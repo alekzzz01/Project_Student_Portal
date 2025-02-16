@@ -11,156 +11,556 @@
         android:fillViewport="true">
 
 
-        <HorizontalScrollView
+<!--        <HorizontalScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fillViewport="true">-->
+
+<!--            <TableLayout-->
+<!--                android:id="@+id/tableLayout"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                &lt;!&ndash; Table Header &ndash;&gt;-->
+<!--                <TableRow android:background="#58AF58">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="School Year"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Semester"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Subject Code"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Subject Name"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Units"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Grade"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Remarks"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Instructor"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                </TableRow>-->
+
+<!--                <TableRow android:background="">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="School Year"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Semester"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Subject Code"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Subject Name"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Units"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Grade"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Remarks"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Instructor"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                </TableRow>-->
+
+<!--            </TableLayout>-->
+
+<!--        </HorizontalScrollView>-->
+
+
+
+        <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fillViewport="true">
+            android:orientation="vertical">
 
             <TableLayout
-                android:id="@+id/tableLayout"
-                android:layout_width="wrap_content"
+                android:id="@+id/tableLayout1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <!-- Table Header -->
-                <TableRow android:background="#58AF58">
+                <TableRow
+
+                    android:background="#58AF58">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:padding="10dp"
                         android:text="School Year"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
+
+
+                </TableRow>
+
+                <!-- Table Data -->
+                <TableRow
+                    android:background="@drawable/table_border"
+                   >
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="2024-2025"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+
+                <TableRow
+
+                    android:background="#58AF58">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:padding="10dp"
                         android:text="Semester"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
+
+
+                </TableRow>
+
+                <!-- Table Data -->
+                <TableRow
+                    android:background="@drawable/table_border"
+                    >
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="FIRST"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+                <TableRow
+
+                    android:background="#58AF58">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:padding="10dp"
                         android:text="Subject Code"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
+
+
+                </TableRow>
+
+                <!-- Table Data -->
+                <TableRow
+                    android:background="@drawable/table_border"
+                    >
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:padding="10dp"
-                        android:text="Subject Name"
+                        android:text="ITEC200b"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+                <TableRow
+
+                    android:background="#58AF58">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Description"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Units"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+
+
+                </TableRow>
+
+                <!-- Table Data -->
+                <TableRow
+                    android:background="@drawable/table_border"
+                    >
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Capstone"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+
+                <TableRow
+
+                    android:background="#58AF58">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:padding="10dp"
                         android:text="Grade"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Remarks"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Instructor"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
 
                 </TableRow>
 
-                <TableRow android:background="">
+                <!-- Table Data -->
+                <TableRow
+                    android:background="@drawable/table_border"
+                    >
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="-"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+
+
+
+
+
+
+
+<!--                -->
+
+                <TableRow
+                    android:layout_marginTop="24dp"
+                    android:background="#58AF58">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="School Year"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+
+                <!-- Table Data -->
+                <TableRow
+                    android:background="@drawable/table_border"
+                    >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:padding="10dp"
                         android:text="School Year"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Semester"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Subject Code"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Subject Name"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Units"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Grade"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Remarks"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Instructor"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
 
                 </TableRow>
+
+                <TableRow
+
+                    android:background="#58AF58">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="School Year"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+
+                <!-- Table Data -->
+                <TableRow
+                    android:background="@drawable/table_border"
+                    >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="School Year"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+                <TableRow
+
+                    android:background="#58AF58">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="School Year"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+
+                <!-- Table Data -->
+                <TableRow
+                    android:background="@drawable/table_border"
+                    >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="School Year"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+                <TableRow
+
+                    android:background="#58AF58">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="School Year"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+
+                <!-- Table Data -->
+                <TableRow
+                    android:background="@drawable/table_border"
+                    >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="School Year"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+                <TableRow
+
+                    android:background="#58AF58">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="School Year"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+
+                <!-- Table Data -->
+                <TableRow
+                    android:background="@drawable/table_border"
+                    >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="School Year"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+
+
+                </TableRow>
+
+
+
+
+
 
             </TableLayout>
 
-        </HorizontalScrollView>
+        </LinearLayout>
+
+
+
+
 
     </ScrollView>
 
