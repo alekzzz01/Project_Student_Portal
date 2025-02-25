@@ -103,6 +103,7 @@
                             android:gravity="center">
 
                             <Button
+                                android:id="@+id/btn_incomplete"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:backgroundTint="#FFC107"
@@ -129,6 +130,7 @@
                             android:gravity="center">
 
                             <Button
+                                android:id="@+id/btn_conditional"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:backgroundTint="#2196F3"
@@ -167,6 +169,7 @@
                             android:gravity="center">
 
                             <Button
+                                android:id="@+id/btn_dropped"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:backgroundTint="#9E9E9E"
@@ -193,6 +196,7 @@
                             android:gravity="center">
 
                             <Button
+                                android:id="@+id/btn_failed"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:backgroundTint="#F44336"
