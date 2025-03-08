@@ -119,18 +119,19 @@ public class fragment_dashboard extends Fragment {
                 String dialogTitle = "";
                 switch (queryType) {
                     case "incomplete":
-                        query += " AND mygrade = ''";
+                        query += " AND mygrade = 'INC'";
                         dialogTitle = "Incomplete";
                         break;
                     case "conditional":
-                        query += " AND mygrade = ''";
+                        query += " AND mygrade = '4.0'";
                         dialogTitle = "Conditional";
                         break;
                     case "dropped":
-                        query += " AND mygrade = 'dropped'";
+                        query += " AND mygrade = 'DRP'";
                         dialogTitle = "Dropped";
                         break;
                     case "failed":
+                        query += " AND mygrade = '5.0'";
                         dialogTitle = "Failed";
                         break;
                 }

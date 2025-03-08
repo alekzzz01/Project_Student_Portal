@@ -107,14 +107,21 @@ public class fragment_Grades extends Fragment {
                     // Iterate through the result and populate the table
                     while (resultSet.next()) {
                         String subjectCode = resultSet.getString("subjectCode");
-                        double myGrade = resultSet.getDouble("myGrade");
-                        double units = resultSet.getDouble("units");
+                        String myGradeStr = resultSet.getString("myGrade");
+                        String unitsStr = resultSet.getString("units");
 
-                        // Update UI on the main thread
-                        getActivity().runOnUiThread(() -> addRowToTable(subjectCode, myGrade, units));
+                        // Check if the grade and units are numeric
+                        if (isNumeric(myGradeStr) && isNumeric(unitsStr)) {
+                            double myGrade = Double.parseDouble(myGradeStr);
+                            double units = Double.parseDouble(unitsStr);
+
+                            // Update UI on the main thread
+                            getActivity().runOnUiThread(() -> addRowToTable(subjectCode, myGrade, units));
+                        } else {
+                            // Handle non-numeric grades (e.g., "INC", "DRP")
+                            getActivity().runOnUiThread(() -> addRowToTable(subjectCode, myGradeStr, unitsStr));
+                        }
                     }
-
-
 
                     resultSet.close();
                     statement.close();
@@ -130,9 +137,18 @@ public class fragment_Grades extends Fragment {
         }).start();
     }
 
+    // Helper method to check if a string is numeric
+    private boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     // Dynamically add rows to the table layout
-// Dynamically add rows to the table layout
-    private void addRowToTable(String subjectCode, Double gradeValue, Double unitsValue) {
+    private void addRowToTable(String subjectCode, Object gradeValue, Object unitsValue) {
         // Create a new table row
         TableRow row = new TableRow(getContext());
         row.setLayoutParams(new TableRow.LayoutParams(
@@ -151,7 +167,7 @@ public class fragment_Grades extends Fragment {
 
         // Grade TextView
         TextView gradeTextView = new TextView(getContext());
-        gradeTextView.setText(String.format("%.2f", gradeValue)); // Ensure grade is formatted to 2 decimal places
+        gradeTextView.setText(gradeValue.toString()); // Display grade as string
         gradeTextView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.poppinsmedium));
         gradeTextView.setLayoutParams(new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         gradeTextView.setPadding(16, 16, 16, 16);
@@ -160,7 +176,7 @@ public class fragment_Grades extends Fragment {
 
         // Units TextView
         TextView unitsTextView = new TextView(getContext());
-        unitsTextView.setText(String.format("%.2f", unitsValue)); // Ensure units are formatted to 2 decimal places
+        unitsTextView.setText(unitsValue.toString()); // Display units as string
         unitsTextView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.poppinsmedium));
         unitsTextView.setLayoutParams(new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         unitsTextView.setPadding(16, 16, 16, 16);
