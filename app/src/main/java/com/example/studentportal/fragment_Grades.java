@@ -111,14 +111,19 @@ public class fragment_Grades extends Fragment {
                         String unitsStr = resultSet.getString("units");
 
                         // Check if the grade and units are numeric
-                        if (isNumeric(myGradeStr) && isNumeric(unitsStr)) {
-                            double myGrade = Double.parseDouble(myGradeStr);
+                        if (isNumeric(unitsStr)) {
                             double units = Double.parseDouble(unitsStr);
 
-                            // Update UI on the main thread
-                            getActivity().runOnUiThread(() -> addRowToTable(subjectCode, myGrade, units));
+                            // Handle numeric grades
+                            if (isNumeric(myGradeStr)) {
+                                double myGrade = Double.parseDouble(myGradeStr);
+                                getActivity().runOnUiThread(() -> addRowToTable(subjectCode, myGrade, units));
+                            } else {
+                                // Handle non-numeric grades (e.g., "INC", "DRP")
+                                getActivity().runOnUiThread(() -> addRowToTable(subjectCode, myGradeStr, units));
+                            }
                         } else {
-                            // Handle non-numeric grades (e.g., "INC", "DRP")
+                            // Handle non-numeric units (unlikely but for completeness)
                             getActivity().runOnUiThread(() -> addRowToTable(subjectCode, myGradeStr, unitsStr));
                         }
                     }

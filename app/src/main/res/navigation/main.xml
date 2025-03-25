@@ -154,17 +154,6 @@
         tools:layout="@layout/fragment__map"/>
 
 
-    <action
-        android:id="@+id/action_dashboard_to_map"
-        app:destination="@+id/nav_Map" />
-
-
-    <action
-        android:id="@+id/action_map_to_dashboard"
-        app:destination="@+id/nav_home" />
-
-
-
     <!---->
     <fragment
 

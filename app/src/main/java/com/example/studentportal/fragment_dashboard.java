@@ -36,7 +36,6 @@ public class fragment_dashboard extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
@@ -56,11 +55,17 @@ public class fragment_dashboard extends Fragment {
         Log.d("FragmentDashboard", "Retrieved role: " + userRole);
         Log.d("FragmentDashboard", "Retrieved student number: " + currentStudentNumber);
 
-        // Check the role and set the header accordingly
+        // Check the role and redirect if the user is a Visitor
         if (userRole.equalsIgnoreCase("Visitor")) {
-            name_header.setText("VISITOR");
-        } else if (currentStudentNumber != null) {
-            // Load the student's name and grade from the database if the role is not Visitor
+            // Redirect to fragment_Map
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.navHostFragment, new fragment_Map())
+                    .commit();
+            return rootView;
+        }
+
+        // Load the student's name and grade from the database if the role is not Visitor
+        if (currentStudentNumber != null) {
             loadUserName(currentStudentNumber);
         } else {
             Toast.makeText(getActivity(), "Student number not found", Toast.LENGTH_SHORT).show();

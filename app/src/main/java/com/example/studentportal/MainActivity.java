@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setDefaultFragment(String userRole) {
         if (userRole.equalsIgnoreCase("Visitor")) {
-            navController.navigate(R.id.action_dashboard_to_map); // Navigate to Map
+            navController.navigate(R.id.nav_Map); // Navigate to Map
         }
     }
 
@@ -124,8 +125,6 @@ public class MainActivity extends AppCompatActivity {
                     navController.navigate(R.id.action_dashboard_to_handbook);
                 } else if (itemId == R.id.nav_Forms) {
                     navController.navigate(R.id.action_dashboard_to_form);
-                } else if (itemId == R.id.nav_Map) {
-                    navController.navigate(R.id.action_dashboard_to_map);
                 } else if (itemId == R.id.nav_User) {
                     navController.navigate(R.id.action_dashboard_to_user);
                 } else if (itemId == R.id.nav_logout) {
@@ -173,5 +172,33 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        String userRole = sharedPreferences.getString("role", "Visitor");
+
+        if (userRole.equalsIgnoreCase("Visitor")) {
+            // Get current destination ID
+            int currentDestId = navController.getCurrentDestination().getId();
+
+            // If current destination is dashboard, navigate to map
+            if (currentDestId == R.id.nav_home) {
+                navController.navigate(R.id.nav_Map);
+            } else if (currentDestId == R.id.nav_Map) {
+                // If user tries to exit map, show exit dialog
+                new AlertDialog.Builder(this)
+                        .setMessage("Do you want to exit the app?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", (dialog, id) -> finish())
+                        .setNegativeButton("No", (dialog, id) -> dialog.dismiss())
+                        .create()
+                        .show();
+            } else {
+                navController.navigate(R.id.nav_Map);
+            }
+        } else {
+            super.onBackPressed();
+        }
     }
 }
