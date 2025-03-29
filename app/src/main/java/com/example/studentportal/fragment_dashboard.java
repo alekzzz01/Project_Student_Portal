@@ -120,23 +120,25 @@ public class fragment_dashboard extends Fragment {
                 ConnectionClass connectionClass = new ConnectionClass();
                 Connection connection = connectionClass.CONN();
 
-                String query = "SELECT * FROM enrollgradestbl WHERE studentnumber = ?";
+                String query = "SELECT e.*, es.instructor FROM enrollgradestbl e " +
+                        "LEFT JOIN enrollscheduletbl es ON e.subjectcode = es.subjectcode " +
+                        "WHERE e.studentnumber = ?";
                 String dialogTitle = "";
                 switch (queryType) {
                     case "incomplete":
-                        query += " AND mygrade = 'INC'";
+                        query += " AND e.mygrade = 'INC'";
                         dialogTitle = "Incomplete";
                         break;
                     case "conditional":
-                        query += " AND mygrade = '4.0'";
+                        query += " AND e.mygrade = '4.0'";
                         dialogTitle = "Conditional";
                         break;
                     case "dropped":
-                        query += " AND mygrade = 'DRP'";
+                        query += " AND e.mygrade = 'DRP'";
                         dialogTitle = "Dropped";
                         break;
                     case "failed":
-                        query += " AND mygrade = '5.0'";
+                        query += " AND e.mygrade = '5.0'";
                         dialogTitle = "Failed";
                         break;
                 }
@@ -160,7 +162,7 @@ public class fragment_dashboard extends Fragment {
                         row.put("units", units);
                         row.put("grade", grade);
 
-                        // Get the description from enrollsubjecttbl using subjectcode
+                        // Get the description from enrollsubjecttbl
                         String subjectCode = resultSet.getString("subjectcode");
                         String descriptionQuery = "SELECT description FROM enrollsubjectstbl WHERE subjectCode = ?";
                         PreparedStatement descriptionStatement = connection.prepareStatement(descriptionQuery);
@@ -172,20 +174,17 @@ public class fragment_dashboard extends Fragment {
                         descriptionResultSet.close();
                         descriptionStatement.close();
 
-                        // If the query type is "failed", get the instructor from enrollscheduletbl
-                        if (queryType.equals("failed")) {
-                            String instructorQuery = "SELECT instructor FROM enrollscheduletbl WHERE subjectcode = ?";
-                            PreparedStatement instructorStatement = connection.prepareStatement(instructorQuery);
-                            instructorStatement.setString(1, subjectCode);
-                            ResultSet instructorResultSet = instructorStatement.executeQuery();
-                            if (instructorResultSet.next()) {
-                                row.put("instructor", instructorResultSet.getString("instructor"));
-                            }
-                            instructorResultSet.close();
-                            instructorStatement.close();
+                        // Get instructor from enrollscheduletbl
+                        String instructor = resultSet.getString("instructor");
+                        if (instructor != null && !instructor.isEmpty()) {
+                            row.put("instructor", instructor);
                         } else {
+                            // Fallback to schedcode for non-failed cases
+                            row.put("instructor", queryType.equals("failed") ? "No instructor found" : resultSet.getString("schedcode"));
+                        }
+
+                        if (!queryType.equals("failed")) {
                             row.put("remarks", resultSet.getString("graded"));
-                            row.put("instructor", resultSet.getString("schedcode"));
                         }
 
                         data.add(row);
