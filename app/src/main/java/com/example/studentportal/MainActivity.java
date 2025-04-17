@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.nav_Forms).setVisible(false);
             menu.findItem(R.id.nav_User).setVisible(false);
             menu.findItem(R.id.nav_home).setVisible(false);
+            menu.findItem(R.id.nav_StudentHandbook).setVisible(false);
         }
     }
 

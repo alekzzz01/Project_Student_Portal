@@ -51,10 +51,12 @@ public class fragment_Grades extends Fragment {
     }
 
     private void setupDropdown() {
-        // Define semester options
+        // Define semester options for all years
         String[] semesterOptions = {
-                "4TH YEAR - 1ST SEMESTER",
-                "4TH YEAR - 2ND SEMESTER"
+                "1ST YEAR - 1ST SEMESTER", "1ST YEAR - 2ND SEMESTER",
+                "2ND YEAR - 1ST SEMESTER", "2ND YEAR - 2ND SEMESTER",
+                "3RD YEAR - 1ST SEMESTER", "3RD YEAR - 2ND SEMESTER",
+                "4TH YEAR - 1ST SEMESTER", "4TH YEAR - 2ND SEMESTER"
         };
 
         // Set up ArrayAdapter for the dropdown
@@ -65,18 +67,42 @@ public class fragment_Grades extends Fragment {
         );
         semesterDropdown.setAdapter(adapter);
 
-        // Set default selection
-        String defaultSelection = "4TH YEAR - 1ST SEMESTER"; // Default semester
+        // Set default selection to 1ST YEAR - 1ST SEMESTER
+        String defaultSelection = "1ST YEAR - 1ST SEMESTER";
         semesterDropdown.setText(defaultSelection, false);
 
-        // Load grades for the default semester
-        loadGrades(currentStudentNumber, "2023-2024", "FIRST");
+        // Map academic years to school years (assuming current is 2023-2024 for 4th year)
+        // This will calculate backward for earlier years
+        String fourthYearSchoolYear = "2024-2025";
+        String thirdYearSchoolYear = "2023-2024";
+        String secondYearSchoolYear = "2022-2023";
+        String firstYearSchoolYear = "2021-2022";
+
+        // Load grades for the default semester (1st year, 1st semester)
+        loadGrades(currentStudentNumber, firstYearSchoolYear, "FIRST");
 
         // Handle dropdown selection changes
         semesterDropdown.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedSemester = semesterOptions[position];
-            String semester = selectedSemester.contains("1ST") ? "FIRST" : "SECOND";
-            loadGrades(currentStudentNumber, "2023-2024", semester);
+            String selectedOption = semesterOptions[position];
+            String schoolYear;
+            String semester;
+
+            // Determine the school year based on the selected year
+            if (selectedOption.contains("1ST YEAR")) {
+                schoolYear = firstYearSchoolYear;
+            } else if (selectedOption.contains("2ND YEAR")) {
+                schoolYear = secondYearSchoolYear;
+            } else if (selectedOption.contains("3RD YEAR")) {
+                schoolYear = thirdYearSchoolYear;
+            } else { // 4TH YEAR
+                schoolYear = fourthYearSchoolYear;
+            }
+
+            // Determine which semester was selected
+            semester = selectedOption.contains("1ST SEMESTER") ? "FIRST" : "SECOND";
+
+            // Load the grades for the selected year and semester
+            loadGrades(currentStudentNumber, schoolYear, semester);
         });
     }
 
@@ -104,8 +130,12 @@ public class fragment_Grades extends Fragment {
                     statement.setString(3, semester);
                     ResultSet resultSet = statement.executeQuery();
 
+                    // Flag to track if any grades were found
+                    boolean gradesFound = false;
+
                     // Iterate through the result and populate the table
                     while (resultSet.next()) {
+                        gradesFound = true;
                         String subjectCode = resultSet.getString("subjectCode");
                         String myGradeStr = resultSet.getString("myGrade");
                         String unitsStr = resultSet.getString("units");
@@ -128,6 +158,14 @@ public class fragment_Grades extends Fragment {
                         }
                     }
 
+                    // If no grades were found, display a message
+                    if (!gradesFound) {
+                        getActivity().runOnUiThread(() -> {
+                            displayNoGradesMessage();
+                            Toast.makeText(getActivity(), "Grades not yet uploaded", Toast.LENGTH_SHORT).show();
+                        });
+                    }
+
                     resultSet.close();
                     statement.close();
                     connection.close();
@@ -140,6 +178,47 @@ public class fragment_Grades extends Fragment {
                         Toast.makeText(getActivity(), "Database Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
             }
         }).start();
+    }
+
+    // Method to display a message when no grades are found
+    private void displayNoGradesMessage() {
+        // Create a new table row
+        TableRow row = new TableRow(getContext());
+        row.setLayoutParams(new TableRow.LayoutParams(
+                TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT
+        ));
+
+        // Message TextView spans all columns
+        TextView messageTextView = new TextView(getContext());
+        messageTextView.setText("Grades not yet uploaded");
+        messageTextView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.poppinsmedium));
+        TableRow.LayoutParams params = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 3f);
+        params.span = 3; // Span across all 3 columns
+        messageTextView.setLayoutParams(params);
+        messageTextView.setPadding(16, 32, 16, 32);
+        messageTextView.setTextColor(getResources().getColor(R.color.black));
+        messageTextView.setGravity(Gravity.CENTER);
+        messageTextView.setTextSize(16);
+
+        // Add TextView to the row
+        row.addView(messageTextView);
+
+        // Add row to the table layout
+        tableLayout.addView(row);
+
+        // Add a separator view
+        View separator = new View(getContext());
+        TableRow.LayoutParams separatorLayoutParams = new TableRow.LayoutParams(
+                TableRow.LayoutParams.MATCH_PARENT,
+                2 // Height of the separator
+        );
+        separatorLayoutParams.setMargins(0, 0, 0, 16); // Optional: add some margin
+        separator.setLayoutParams(separatorLayoutParams);
+        separator.setBackgroundColor(getResources().getColor(R.color.gray)); // Set the color of the separator
+
+        // Add separator to the table layout
+        tableLayout.addView(separator);
     }
 
     // Helper method to check if a string is numeric
@@ -209,7 +288,4 @@ public class fragment_Grades extends Fragment {
         // Add separator to the table layout
         tableLayout.addView(separator);
     }
-
-
-
 }
