@@ -61,52 +61,58 @@ public class fragment_subjects extends Fragment {
     }
 
     private void setupDropdown() {
-        // Updated options with "First Sem" and "Second Sem"
-        String[] schoolYearTermOptions = {
-                "2023 - 2024 First Semester",
-                "2023 - 2024 Second Semester",
-                "2024 - 2025 First Semester",
-                "2024 - 2025 Second Semester"
+        // Data options for database queries (year and semester)
+        String[][] dataOptions = {
+                {"2021-2022", "FIRST"},
+                {"2021-2022", "SECOND"},
+                {"2022-2023", "FIRST"},
+                {"2022-2023", "SECOND"},
+                {"2023-2024", "FIRST"},
+                {"2023-2024", "SECOND"},
+                {"2024-2025", "FIRST"},
+                {"2024-2025", "SECOND"}
+        };
+
+        // Display options with year labels
+        String[] displayOptions = {
+                "1ST YEAR - 1ST SEMESTER",
+                "1ST YEAR - 2ND SEMESTER",
+                "2ND YEAR - 1ST SEMESTER",
+                "2ND YEAR - 2ND SEMESTER",
+                "3RD YEAR - 1ST SEMESTER",
+                "3RD YEAR - 2ND SEMESTER",
+                "4TH YEAR - 1ST SEMESTER",
+                "4TH YEAR - 2ND SEMESTER"
         };
 
         // ArrayAdapter to populate the dropdown
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_dropdown_item_1line,
-                schoolYearTermOptions
+                displayOptions
         );
 
         dropdown.setAdapter(adapter);
 
-        // Set default selection
-        String defaultSelection = "2023 - 2024 First Semester"; // Set your desired default option here
-        dropdown.setText(defaultSelection, false); // Set text without triggering listeners
-
-        // Extract default year and term from the selected default option
-        String[] defaultParts = defaultSelection.split(" - ");
-        String defaultYear = defaultParts[0];   // Extracts the year (e.g., "2023")
-        String defaultSemester = defaultParts[1];  // Extracts the semester (e.g., "First Sem" or "Second Sem")
-        String defaultTerm = defaultSemester.equals("First Sem") ? "1" : "2";
+        // Set default selection (1ST YEAR - 1ST SEMESTER)
+        int defaultIndex = 0; // Index for "1ST YEAR - 1ST SEMESTER" in chronological order
+        dropdown.setText(displayOptions[defaultIndex], false);
 
         // Load subjects for the default selection
-        loadSubjects(defaultYear, defaultTerm);
+        loadSubjects(dataOptions[defaultIndex][0], dataOptions[defaultIndex][1]);
 
         // Handle dropdown selection
         dropdown.setOnItemClickListener((parent, view, position, id) -> {
-            String selected = schoolYearTermOptions[position];
-            String[] parts = selected.split(" - ");
-            String year = parts[0];   // Extracts the year (e.g., "2023")
-            String semester = parts[1];  // Extracts the semester (e.g., "First Sem" or "Second Sem")
+            // Get data corresponding to the selected display option
+            String year = dataOptions[position][0];
+            String semester = dataOptions[position][1];
 
-            // Determine the term value based on the semester
-            String term = (semester.equals("First Sem")) ? "1" : "2";  // "First Sem" = 1, "Second Sem" = 2
-
-            // Load subjects for the selected school year and semester (term)
-            loadSubjects(year, term);
+            // Load subjects for the selected school year and semester
+            loadSubjects(year, semester);
         });
     }
 
-    private void loadSubjects(String year, String term) {
+    private void loadSubjects(String year, String semester) {
         // Clear previous rows (except the header row)
         getActivity().runOnUiThread(() -> {
             int childCount = tableLayout.getChildCount();
@@ -121,12 +127,21 @@ public class fragment_subjects extends Fragment {
                 ConnectionClass connectionClass = new ConnectionClass();
                 Connection connection = connectionClass.CONN();
 
-                // Correct query to select subjectCode and subjectTitle
-                String query = "SELECT subjectCode, subjectTitle FROM enrollsubjectstbl WHERE schoolYear = ? AND term = ?";
-                Log.e("SQL Query", "Executing query: " + query + " with schoolYear = " + year + " and term = " + term);
+                // Complex query joining multiple tables to get the enrolled subjects for the student
+                String query = "SELECT s.subjectCode, s.subjectTitle FROM enrollscheduletbl es " +
+                              "JOIN enrollsubjectenrolled ee ON es.schedcode = ee.schedcode " +
+                              "JOIN enrollsubjectstbl s ON es.subjectCode = s.subjectCode " +
+                              "WHERE ee.studentNumber = ? AND ee.schoolYear = ? AND ee.semester = ?";
+
+                Log.e("SQL Query", "Executing query: " + query +
+                      " with studentNumber = " + currentStudentNumber +
+                      ", schoolYear = " + year +
+                      ", semester = " + semester);
+
                 PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, year);
-                statement.setString(2, term);
+                statement.setString(1, currentStudentNumber);
+                statement.setString(2, year);
+                statement.setString(3, semester);
                 ResultSet resultSet = statement.executeQuery();
 
                 // Log the result count
@@ -144,6 +159,12 @@ public class fragment_subjects extends Fragment {
 
                 // Log the number of results found
                 Log.e("SQL Query", "Number of subjects found: " + resultCount);
+
+                if (resultCount == 0) {
+                    getActivity().runOnUiThread(() -> {
+                        Toast.makeText(getActivity(), "No subjects found for the selected semester", Toast.LENGTH_SHORT).show();
+                    });
+                }
 
                 resultSet.close();
                 statement.close();
