@@ -91,18 +91,23 @@ public class LoginTabFragment extends Fragment {
             }
 
             try {
-                String query = "SELECT studentnumber FROM enrollpswdstudtbl WHERE studentnumber = ? AND secretdoor = ?";
+                String query = "SELECT studentnumber, secretdoor FROM enrollpswdstudtbl WHERE studentnumber = ?";
                 PreparedStatement stmt = conn.prepareStatement(query);
                 stmt.setString(1, email);
-                stmt.setString(2, password);
 
                 ResultSet rs = stmt.executeQuery();
 
                 if (rs.next()) {
-                    studentNumber = rs.getString("studentnumber");
-                    return true;
+                    String storedPassword = rs.getString("secretdoor");
+                    if (password.equals(storedPassword)) { // Case-sensitive comparison
+                        studentNumber = rs.getString("studentnumber");
+                        return true;
+                    } else {
+                        errorMessage = "Invalid password";
+                        return false;
+                    }
                 } else {
-                    errorMessage = "Invalid email or password";
+                    errorMessage = "Invalid student number";
                     return false;
                 }
             } catch (Exception e) {
