@@ -133,6 +133,10 @@ public class fragment_Grades extends Fragment {
                     // Flag to track if any grades were found
                     boolean gradesFound = false;
 
+                    // Variables for GWA calculation
+                    double totalPoints = 0;
+                    double totalUnits = 0;
+
                     // Iterate through the result and populate the table
                     while (resultSet.next()) {
                         gradesFound = true;
@@ -148,6 +152,10 @@ public class fragment_Grades extends Fragment {
                             if (isNumeric(myGradeStr)) {
                                 double myGrade = Double.parseDouble(myGradeStr);
                                 getActivity().runOnUiThread(() -> addRowToTable(subjectCode, myGrade, units));
+
+                                // Add to GWA calculation
+                                totalPoints += myGrade * units;
+                                totalUnits += units;
                             } else {
                                 // Handle non-numeric grades (e.g., "INC", "DRP")
                                 getActivity().runOnUiThread(() -> addRowToTable(subjectCode, myGradeStr, units));
@@ -158,12 +166,20 @@ public class fragment_Grades extends Fragment {
                         }
                     }
 
+                    // Calculate and display GWA if grades were found
+                    final double gwa = gradesFound && totalUnits > 0 ? totalPoints / totalUnits : 0;
+                    final boolean hasGrades = gradesFound;
+                    final double finalTotalUnits = totalUnits;
+
                     // If no grades were found, display a message
                     if (!gradesFound) {
                         getActivity().runOnUiThread(() -> {
                             displayNoGradesMessage();
                             Toast.makeText(getActivity(), "Grades not yet uploaded", Toast.LENGTH_SHORT).show();
                         });
+                    } else if (totalUnits > 0) {
+                        // Display GWA
+                        getActivity().runOnUiThread(() -> displayGWA(gwa, finalTotalUnits));
                     }
 
                     resultSet.close();
@@ -178,6 +194,89 @@ public class fragment_Grades extends Fragment {
                         Toast.makeText(getActivity(), "Database Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
             }
         }).start();
+    }
+
+    // Method to display the GWA at the bottom of the table
+    private void displayGWA(double gwa, double totalUnits) {
+        // Add some spacing
+        View spacer = new View(getContext());
+        spacer.setLayoutParams(new TableLayout.LayoutParams(
+                TableLayout.LayoutParams.MATCH_PARENT,
+                30 // Height of the spacer
+        ));
+        tableLayout.addView(spacer);
+
+        // Create container for GWA display
+        TableRow gwaContainer = new TableRow(getContext());
+        gwaContainer.setLayoutParams(new TableRow.LayoutParams(
+                TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT
+        ));
+        gwaContainer.setBackgroundColor(getResources().getColor(R.color.green)); // Green background
+        gwaContainer.setPadding(0, 16, 0, 16);
+
+        // GWA Label
+        TextView gwaLabel = new TextView(getContext());
+        gwaLabel.setText("GWA:");
+        gwaLabel.setTypeface(ResourcesCompat.getFont(getContext(), R.font.poppinsbold));
+        gwaLabel.setLayoutParams(new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 2f));
+        gwaLabel.setPadding(32, 16, 16, 16);
+        gwaLabel.setTextColor(getResources().getColor(R.color.white));
+        gwaLabel.setTextSize(16);
+        gwaLabel.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
+
+        // GWA Value
+        TextView gwaValue = new TextView(getContext());
+        gwaValue.setText(String.format("%.2f", gwa));
+        gwaValue.setTypeface(ResourcesCompat.getFont(getContext(), R.font.poppinsbold));
+        gwaValue.setLayoutParams(new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        gwaValue.setPadding(16, 16, 32, 16);
+        gwaValue.setTextColor(getResources(). getColor(R.color.white)); // Yellow text for GWA value
+        gwaValue.setTextSize(18);
+        gwaValue.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
+
+        // Add views to row
+        gwaContainer.addView(gwaLabel);
+        gwaContainer.addView(gwaValue);
+
+        // Add row to table
+        tableLayout.addView(gwaContainer);
+
+        // Add total units row
+        TableRow unitsContainer = new TableRow(getContext());
+        unitsContainer.setLayoutParams(new TableRow.LayoutParams(
+                TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT
+        ));
+        unitsContainer.setBackgroundColor(getResources().getColor(R.color.yellow)); // Light yellow background
+        unitsContainer.setPadding(0, 0, 0, 16);
+
+        // Units Label
+        TextView unitsLabel = new TextView(getContext());
+        unitsLabel.setText("Total Units:");
+        unitsLabel.setTypeface(ResourcesCompat.getFont(getContext(), R.font.poppinsmedium));
+        unitsLabel.setLayoutParams(new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 2f));
+        unitsLabel.setPadding(32, 8, 16, 16);
+        unitsLabel.setTextColor(getResources().getColor(R.color.black)); // Black text for readability
+        unitsLabel.setTextSize(14);
+        unitsLabel.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
+
+        // Units Value
+        TextView unitsValue = new TextView(getContext());
+        unitsValue.setText(String.format("%.1f", totalUnits));
+        unitsValue.setTypeface(ResourcesCompat.getFont(getContext(), R.font.poppinsmedium));
+        unitsValue.setLayoutParams(new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        unitsValue.setPadding(16, 8, 32, 16);
+        unitsValue.setTextColor(getResources().getColor(R.color.black)); // Black text for readability
+        unitsValue.setTextSize(14);
+        unitsValue.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
+
+        // Add views to row
+        unitsContainer.addView(unitsLabel);
+        unitsContainer.addView(unitsValue);
+
+        // Add row to table
+        tableLayout.addView(unitsContainer);
     }
 
     // Method to display a message when no grades are found
