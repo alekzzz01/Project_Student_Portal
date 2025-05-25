@@ -30,7 +30,7 @@ public class PdfVIewer_Activity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient());
 
 //         Load the PDF using Google Docs
-        String pdfUrl = "https://docs.google.com/document/d/1kWOKlGp7tLYyzc58wAmDAMFfjQyWaae0DA3N3KuGh4w/edit?usp=sharing";
+        String pdfUrl = "https://docs.google.com/document/d/1oHduyUjmfS0dg9AFS2ExJgD1mGVDMf5aOG0scVshzis/preview";
 
 
 
